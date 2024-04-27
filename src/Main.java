@@ -15,6 +15,7 @@ public class Main extends javax.swing.JFrame {
 
 	Login loginPane;
 	Register registerPane;
+	Appointments appointmentsPane;
 	JPanel contentPane;
 
 	Scheduler scheduler;
@@ -29,9 +30,11 @@ public class Main extends javax.swing.JFrame {
 
 		loginPane = new Login(contentPane, scheduler);
 		registerPane = new Register(contentPane, scheduler);
+		appointmentsPane = new Appointments(contentPane, scheduler);
 
 		contentPane.add("Log in", loginPane);
 		contentPane.add("Register", registerPane);
+		contentPane.add("Appointments", appointmentsPane);
 
 		layout = (CardLayout) contentPane.getLayout();
 
