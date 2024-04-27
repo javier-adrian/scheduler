@@ -62,7 +62,7 @@ public class Appointments extends javax.swing.JPanel {
                 });
                 setLayout(new java.awt.GridBagLayout());
 
-                userLabel.setText("[User]");
+                userLabel.setText("User");
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 0;
@@ -92,7 +92,7 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
                 add(jScrollPane1, gridBagConstraints);
 
-                filterBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                filterBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 3;
                 gridBagConstraints.gridy = 0;
@@ -117,7 +117,7 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 20);
                 add(sortByLabel, gridBagConstraints);
 
-                sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 5;
                 gridBagConstraints.gridy = 0;
@@ -169,10 +169,10 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 4;
                 gridBagConstraints.gridy = 2;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
                 add(listByLabel, gridBagConstraints);
 
-                listBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                listBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appointments", "Properties", "Clients" }));
                 listBy.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 listByActionPerformed(evt);
@@ -181,7 +181,8 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 5;
                 gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
                 add(listBy, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
