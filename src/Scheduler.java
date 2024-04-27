@@ -6,10 +6,10 @@ public class Scheduler {
     String user;
     String password;
 
-    public Scheduler(){
-        url = "jdbc:mariadb://localhost:3306/scheduler";
-        user = "creui";
-        password = "....";
+    public Scheduler(String database, String user, String password){
+        url = "jdbc:mariadb://localhost:3306/" + database + "?user=" + user + "&password=" + password;
+        this.user = user;
+        this.password = password;
 
         try {
             Class.forName("org.mariadb.jdbc.Driver");
@@ -31,7 +31,7 @@ public class Scheduler {
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url);
             PreparedStatement statement = connection.prepareStatement(query);
 
             statement.setString(1, fName);
@@ -63,7 +63,7 @@ public class Scheduler {
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, this.password);
             PreparedStatement statement = connection.prepareStatement(query);
 
             statement.setString(1, fName);

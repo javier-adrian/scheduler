@@ -24,7 +24,7 @@ public class Main extends javax.swing.JFrame {
 	 * Creates new form Main
 	 */
 	public Main() {
-		scheduler = new Scheduler();
+		scheduler = new Scheduler("scheduler", "creui", "....");
 		contentPane = new JPanel(new CardLayout());
 
 		loginPane = new Login(contentPane, scheduler);

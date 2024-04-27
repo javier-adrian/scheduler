@@ -85,6 +85,11 @@ public class Login extends javax.swing.JPanel {
                 add(passwordField, gridBagConstraints);
 
                 loginButton.setText("Log in");
+                loginButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                loginButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 2;
@@ -112,6 +117,10 @@ public class Login extends javax.swing.JPanel {
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, "Register");
         }//GEN-LAST:event_registerButtonActionPerformed
+
+        private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+		scheduler.validateCustomer(userField.getText(), passwordField.getText());
+        }//GEN-LAST:event_loginButtonActionPerformed
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables

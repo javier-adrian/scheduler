@@ -187,7 +187,7 @@ public class Register extends javax.swing.JPanel {
         }//GEN-LAST:event_passwordFieldActionPerformed
 
         private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-//                scheduler.insertCustomer(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
+                scheduler.insertAgent(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, "Log in");
         }//GEN-LAST:event_registerButtonActionPerformed
