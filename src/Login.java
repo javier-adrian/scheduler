@@ -120,6 +120,7 @@ public class Login extends javax.swing.JPanel {
 
         private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 		if (scheduler.validateCustomer(userField.getText(), passwordField.getText())) {
+			Main.sessionAgent = userField.getText();
 			CardLayout layout = (CardLayout) contentPane.getLayout();
 			layout.show(contentPane, "Appointments");
 		}

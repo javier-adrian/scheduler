@@ -55,6 +55,11 @@ public class Appointments extends javax.swing.JPanel {
                 listBy = new javax.swing.JComboBox<>();
 
                 setMinimumSize(new java.awt.Dimension(640, 640));
+                addComponentListener(new java.awt.event.ComponentAdapter() {
+                        public void componentShown(java.awt.event.ComponentEvent evt) {
+                                formComponentShown(evt);
+                        }
+                });
                 setLayout(new java.awt.GridBagLayout());
 
                 userLabel.setText("[User]");
@@ -184,6 +189,9 @@ public class Appointments extends javax.swing.JPanel {
                 // TODO add your handling code here:
         }//GEN-LAST:event_listByActionPerformed
 
+        private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(scheduler.getAgentName(Main.sessionAgent));
+        }//GEN-LAST:event_formComponentShown
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;

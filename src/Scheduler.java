@@ -104,4 +104,26 @@ public class Scheduler {
 
 	    return true;
     }
+
+    public String getAgentName(String username){
+	    String query = "SELECT * FROM customer WHERE username = ?";
+	    String name = "Error";
+
+	    try {
+		connection = DriverManager.getConnection(url, user, password);
+		PreparedStatement statement = connection.prepareStatement(query);
+
+		statement.setString(1, username);
+
+		ResultSet result = statement.executeQuery();
+
+		if (result.next()){
+			name = result.getString("fName") + " " + result.getString("lName");
+		}
+	    } catch (SQLException e) {
+		    System.out.println(e.getMessage());
+	    }
+
+	    return name;
+    }
 }

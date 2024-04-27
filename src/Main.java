@@ -21,6 +21,8 @@ public class Main extends javax.swing.JFrame {
 	Scheduler scheduler;
 	CardLayout layout;
 
+	static String sessionAgent;
+
 	/**
 	 * Creates new form Main
 	 */
