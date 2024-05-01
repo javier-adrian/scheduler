@@ -47,9 +47,10 @@ public class Register extends javax.swing.JPanel {
                 registerButton = new javax.swing.JButton();
                 lNameField = new javax.swing.JTextField();
                 contactField = new javax.swing.JTextField();
+                backButton = new javax.swing.JButton();
 
-                setMinimumSize(new java.awt.Dimension(640, 640));
-                setPreferredSize(new java.awt.Dimension(640, 640));
+                setMinimumSize(new java.awt.Dimension(720, 576));
+                setPreferredSize(new java.awt.Dimension(720, 576));
                 setLayout(new java.awt.GridBagLayout());
 
                 fNameLabel.setText("First Name");
@@ -172,6 +173,19 @@ public class Register extends javax.swing.JPanel {
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
                 add(contactField, gridBagConstraints);
+
+                backButton.setText("Back");
+                backButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                backButtonActionPerformed(evt);
+                        }
+                });
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 7;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+                add(backButton, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
         private void fNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameFieldActionPerformed
@@ -188,12 +202,30 @@ public class Register extends javax.swing.JPanel {
 
         private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
                 scheduler.insertAgent(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
+		contactField.setText("");
+		emailField.setText("");
+		fNameField.setText("");
+		lNameField.setText("");
+		passwordField.setText("");
+		usernameField.setText("");
 		CardLayout layout = (CardLayout) contentPane.getLayout();
 		layout.show(contentPane, "Log in");
         }//GEN-LAST:event_registerButtonActionPerformed
 
+        private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+		contactField.setText("");
+		emailField.setText("");
+		fNameField.setText("");
+		lNameField.setText("");
+		passwordField.setText("");
+		usernameField.setText("");
+		CardLayout layout = (CardLayout) contentPane.getLayout();
+		layout.show(contentPane, "Log in");
+        }//GEN-LAST:event_backButtonActionPerformed
+
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JButton backButton;
         private javax.swing.JTextField contactField;
         private javax.swing.JLabel contactLabel;
         private javax.swing.JTextField emailField;
