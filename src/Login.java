@@ -43,8 +43,8 @@ public class Login extends javax.swing.JPanel {
                 loginButton = new javax.swing.JButton();
                 registerButton = new javax.swing.JButton();
 
-                setMinimumSize(new java.awt.Dimension(640, 640));
-                setPreferredSize(new java.awt.Dimension(640, 640));
+                setMinimumSize(new java.awt.Dimension(720, 576));
+                setPreferredSize(new java.awt.Dimension(720, 576));
                 setLayout(new java.awt.GridBagLayout());
 
                 userLabel.setText("User");
@@ -119,10 +119,12 @@ public class Login extends javax.swing.JPanel {
         }//GEN-LAST:event_registerButtonActionPerformed
 
         private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-		if (scheduler.validateCustomer(userField.getText(), passwordField.getText())) {
+		if (scheduler.validateAgent(userField.getText(), passwordField.getText())) {
 			Main.sessionAgent = userField.getText();
 			CardLayout layout = (CardLayout) contentPane.getLayout();
 			layout.show(contentPane, "Appointments");
+			userField.setText("");
+			passwordField.setText("");
 		}
         }//GEN-LAST:event_loginButtonActionPerformed
 
