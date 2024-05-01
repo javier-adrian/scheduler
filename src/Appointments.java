@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,6 +16,7 @@ public class Appointments extends javax.swing.JPanel {
 
 	JPanel contentPane;
 	Scheduler scheduler;
+	DefaultTableModel appointmentsModel;
 
 	/**
 	 * Creates new form Appointments
@@ -22,12 +25,31 @@ public class Appointments extends javax.swing.JPanel {
 		this.contentPane = contentPane;
 		this.scheduler = scheduler;
 
+		appointmentsModel = new DefaultTableModel();
+
+		appointmentsModel.addColumn("Schedule");
+		appointmentsModel.addColumn("Property");
+		appointmentsModel.addColumn("Client");
+
 		initComponents();
+
+		updateViewerAppointments(2); // TEMPORARY MAGIC VALUE
 
 		sortBy.addItem("Property");
 		sortBy.addItem("Customer");
 		sortBy.addItem("Schedule");
 	}
+
+	private void updateViewerAppointments(int agentID) {
+		DefaultTableModel model = (DefaultTableModel) viewer.getModel();
+		model.setRowCount(0);
+
+		appointmentsModel = scheduler.getAppointments(appointmentsModel, agentID);
+
+		viewer.setModel(appointmentsModel);
+		viewer.doLayout();
+
+	} 
 
 	/**
 	 * This method is called from within the constructor to initialize the
@@ -41,7 +63,7 @@ public class Appointments extends javax.swing.JPanel {
 
                 userLabel = new javax.swing.JLabel();
                 jScrollPane1 = new javax.swing.JScrollPane();
-                jTable1 = new javax.swing.JTable();
+                viewer = new javax.swing.JTable();
                 filterBy = new javax.swing.JComboBox<>();
                 filterByLabel = new javax.swing.JLabel();
                 sortByLabel = new javax.swing.JLabel();
@@ -54,7 +76,8 @@ public class Appointments extends javax.swing.JPanel {
                 listByLabel = new javax.swing.JLabel();
                 listBy = new javax.swing.JComboBox<>();
 
-                setMinimumSize(new java.awt.Dimension(640, 640));
+                setMinimumSize(new java.awt.Dimension(720, 576));
+                setPreferredSize(new java.awt.Dimension(720, 576));
                 addComponentListener(new java.awt.event.ComponentAdapter() {
                         public void componentShown(java.awt.event.ComponentEvent evt) {
                                 formComponentShown(evt);
@@ -70,7 +93,7 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.insets = new java.awt.Insets(40, 20, 0, 0);
                 add(userLabel, gridBagConstraints);
 
-                jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                viewer.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
                                 {null, null, null},
                                 {null, null, null},
@@ -81,7 +104,7 @@ public class Appointments extends javax.swing.JPanel {
                                 "Property", "Customer", "Schedule"
                         }
                 ));
-                jScrollPane1.setViewportView(jTable1);
+                jScrollPane1.setViewportView(viewer);
 
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
@@ -156,6 +179,11 @@ public class Appointments extends javax.swing.JPanel {
                 add(addAppointmentButton, gridBagConstraints);
 
                 logoutButton.setText("Log out");
+                logoutButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                logoutButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 0;
@@ -194,6 +222,12 @@ public class Appointments extends javax.swing.JPanel {
 		userLabel.setText(scheduler.getAgentName(Main.sessionAgent));
         }//GEN-LAST:event_formComponentShown
 
+        private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+                Main.sessionAgent = null;
+		CardLayout layout = (CardLayout) contentPane.getLayout();
+		layout.show(contentPane, "Log in");
+        }//GEN-LAST:event_logoutButtonActionPerformed
+
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;
         private javax.swing.JButton addCustomerButton;
@@ -202,12 +236,12 @@ public class Appointments extends javax.swing.JPanel {
         private javax.swing.JComboBox<String> filterBy;
         private javax.swing.JLabel filterByLabel;
         private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JTable jTable1;
         private javax.swing.JComboBox<String> listBy;
         private javax.swing.JLabel listByLabel;
         private javax.swing.JButton logoutButton;
         private javax.swing.JComboBox<String> sortBy;
         private javax.swing.JLabel sortByLabel;
         private javax.swing.JLabel userLabel;
+        private javax.swing.JTable viewer;
         // End of variables declaration//GEN-END:variables
 }
