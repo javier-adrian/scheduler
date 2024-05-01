@@ -1,4 +1,5 @@
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Scheduler {
     Connection connection;
@@ -82,8 +83,9 @@ public class Scheduler {
         }
     }
 
-    public boolean validateCustomer(String username, String password) {
-	    String query = "SELECT * FROM customer WHERE username = ? AND password = ?";
+    public boolean validateAgent(String username, String password) {
+	    String query = "SELECT * FROM agent WHERE username = ? AND password = ?";
+	    boolean success = false;
 
 	    try {
 		connection = DriverManager.getConnection(url, user, password);
@@ -95,18 +97,17 @@ public class Scheduler {
 		ResultSet result = statement.executeQuery();
 
 		if (result.next()){
-			System.out.println("Success");
-		} else
-			System.out.println("Credentials Incorrect");
+			success = true;
+		}
 	    } catch (SQLException e) {
 		    System.out.println(e.getMessage());
 	    }
 
-	    return true;
+	    return success;
     }
 
     public String getAgentName(String username){
-	    String query = "SELECT * FROM customer WHERE username = ?";
+	    String query = "SELECT * FROM agent WHERE username = ?";
 	    String name = "Error";
 
 	    try {
@@ -125,5 +126,33 @@ public class Scheduler {
 	    }
 
 	    return name;
+    }
+
+    public DefaultTableModel getAppointments(DefaultTableModel model, int agentID) {
+	    String query = "SELECT * FROM appointment WHERE agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, agentID);
+		    ResultSet result = statement.executeQuery();
+
+		    while (result.next()){
+			    String row = 
+				    result.getTimestamp("schedule") + "," +
+				    result.getInt("property") + "," +
+				    result.getInt("customer");
+
+	 		    String tuple[] = row.split(",");
+			    newModel.addRow(tuple);
+		    }
+	    } catch (SQLException e) {
+		    System.out.println(e.getMessage());
+	    }
+
+	    return newModel;
     }
 }
