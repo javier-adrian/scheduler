@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,17 +12,17 @@ import java.sql.*;
  * @author creui
  */
 public class Appointments extends javax.swing.JPanel {
-
 	JPanel contentPane;
-	Scheduler scheduler;
+	AMS AMS;
 	DefaultTableModel appointmentsModel;
+	CardLayout layout;
 
 	/**
 	 * Creates new form Appointments
 	 */
-	public Appointments(JPanel contentPane, Scheduler scheduler) {
+	public Appointments(JPanel contentPane, AMS scheduler) {
 		this.contentPane = contentPane;
-		this.scheduler = scheduler;
+		this.AMS = scheduler;
 
 		appointmentsModel = new DefaultTableModel();
 
@@ -31,9 +30,11 @@ public class Appointments extends javax.swing.JPanel {
 		appointmentsModel.addColumn("Property");
 		appointmentsModel.addColumn("Client");
 
+		layout = (CardLayout) contentPane.getLayout();
+
 		initComponents();
 
-		updateViewerAppointments(2); // TEMPORARY MAGIC VALUE
+		updateViewerAppointments(1); // TEMPORARY MAGIC VALUE
 
 		sortBy.addItem("Property");
 		sortBy.addItem("Customer");
@@ -44,11 +45,10 @@ public class Appointments extends javax.swing.JPanel {
 		DefaultTableModel model = (DefaultTableModel) viewer.getModel();
 		model.setRowCount(0);
 
-		appointmentsModel = scheduler.getAppointments(appointmentsModel, agentID);
+		appointmentsModel = AMS.getAppointments(appointmentsModel, agentID);
 
 		viewer.setModel(appointmentsModel);
 		viewer.doLayout();
-
 	} 
 
 	/**
@@ -75,6 +75,8 @@ public class Appointments extends javax.swing.JPanel {
                 logoutButton = new javax.swing.JButton();
                 listByLabel = new javax.swing.JLabel();
                 listBy = new javax.swing.JComboBox<>();
+                jButton1 = new javax.swing.JButton();
+                jButton2 = new javax.swing.JButton();
 
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
@@ -150,6 +152,11 @@ public class Appointments extends javax.swing.JPanel {
                 add(sortBy, gridBagConstraints);
 
                 addPropertyButton.setText("Property");
+                addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                addPropertyButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 3;
                 gridBagConstraints.gridy = 3;
@@ -165,6 +172,11 @@ public class Appointments extends javax.swing.JPanel {
                 add(addLabel, gridBagConstraints);
 
                 addCustomerButton.setText("Customer");
+                addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                addCustomerButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 4;
                 gridBagConstraints.gridy = 3;
@@ -172,6 +184,11 @@ public class Appointments extends javax.swing.JPanel {
                 add(addCustomerButton, gridBagConstraints);
 
                 addAppointmentButton.setText("Appointment");
+                addAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                addAppointmentButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 5;
                 gridBagConstraints.gridy = 3;
@@ -212,6 +229,22 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
                 add(listBy, gridBagConstraints);
+
+                jButton1.setText("Edit");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
+                add(jButton1, gridBagConstraints);
+
+                jButton2.setText("Remove");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 3;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(0, 20, 40, 0);
+                add(jButton2, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
         private void listByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listByActionPerformed
@@ -219,14 +252,26 @@ public class Appointments extends javax.swing.JPanel {
         }//GEN-LAST:event_listByActionPerformed
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-		userLabel.setText(scheduler.getAgentName(Main.sessionAgent));
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
         }//GEN-LAST:event_formComponentShown
 
         private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
                 Main.sessionAgent = null;
-		CardLayout layout = (CardLayout) contentPane.getLayout();
+		Main.sessionAgentID = 0;
 		layout.show(contentPane, "Log in");
         }//GEN-LAST:event_logoutButtonActionPerformed
+
+        private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
+		layout.show(contentPane, "Add Property");
+        }//GEN-LAST:event_addPropertyButtonActionPerformed
+
+        private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
+		layout.show(contentPane, "Add Client");
+        }//GEN-LAST:event_addCustomerButtonActionPerformed
+
+        private void addAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentButtonActionPerformed
+		layout.show(contentPane, "Add Appointment");
+        }//GEN-LAST:event_addAppointmentButtonActionPerformed
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;
@@ -235,6 +280,8 @@ public class Appointments extends javax.swing.JPanel {
         private javax.swing.JButton addPropertyButton;
         private javax.swing.JComboBox<String> filterBy;
         private javax.swing.JLabel filterByLabel;
+        private javax.swing.JButton jButton1;
+        private javax.swing.JButton jButton2;
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JComboBox<String> listBy;
         private javax.swing.JLabel listByLabel;

@@ -11,15 +11,14 @@ import java.awt.*;
  * @author creui
  */
 public class Register extends javax.swing.JPanel {
-
 	JPanel contentPane;
-	Scheduler scheduler;
+	AMS AMS;
 
 	/**
 	 * Creates new form Register
 	 */
-	public Register(JPanel contentPane, Scheduler scheduler) {
-		this.scheduler = scheduler;
+	public Register(JPanel contentPane, AMS scheduler) {
+		this.AMS = scheduler;
 		this.contentPane = contentPane;
 		initComponents();
 	}
@@ -201,7 +200,7 @@ public class Register extends javax.swing.JPanel {
         }//GEN-LAST:event_passwordFieldActionPerformed
 
         private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-                scheduler.insertAgent(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
+                AMS.insertAgent(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
 		contactField.setText("");
 		emailField.setText("");
 		fNameField.setText("");

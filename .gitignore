@@ -15,3 +15,8 @@ nb-configuration.xml
 *.war
 *.ear
 
+/script-files/
+/class-use/
+/index-files/
+/legal/
+/resource-files/

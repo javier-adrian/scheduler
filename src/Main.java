@@ -16,31 +16,40 @@ import javax.swing.UIManager;
  * @author creui
  */
 public class Main extends javax.swing.JFrame {
-
 	Login loginPane;
 	Register registerPane;
 	Appointments appointmentsPane;
+	AddClient addClientPane;
+	AddProperty addPropertyPane;
+	AddAppointment addAppointmentPane;
 	JPanel contentPane;
 
-	Scheduler scheduler;
+	AMS AMS;
 	CardLayout layout;
 
 	static String sessionAgent;
+	static int sessionAgentID;
 
 	/**
 	 * Creates new form Main
 	 */
 	public Main() {
-		scheduler = new Scheduler("scheduler", "creui", "....");
+		AMS = new AMS("AMS", "creui", "....");
 		contentPane = new JPanel(new CardLayout());
 
-		loginPane = new Login(contentPane, scheduler);
-		registerPane = new Register(contentPane, scheduler);
-		appointmentsPane = new Appointments(contentPane, scheduler);
+		loginPane = new Login(contentPane, AMS);
+		registerPane = new Register(contentPane, AMS);
+		appointmentsPane = new Appointments(contentPane, AMS);
+		addClientPane = new AddClient(contentPane, AMS);
+		addPropertyPane = new AddProperty(contentPane, AMS);
+		addAppointmentPane = new AddAppointment(contentPane, AMS);
 
 		contentPane.add("Log in", loginPane);
 		contentPane.add("Register", registerPane);
 		contentPane.add("Appointments", appointmentsPane);
+		contentPane.add("Add Client", addClientPane);
+		contentPane.add("Add Property", addPropertyPane);
+		contentPane.add("Add Appointment", addAppointmentPane);
 
 		layout = (CardLayout) contentPane.getLayout();
 

@@ -12,16 +12,14 @@ import javax.swing.JPanel;
  * @author creui
  */
 public class Login extends javax.swing.JPanel {
-
+	AMS AMS;
 	JPanel contentPane;
-
-	Scheduler scheduler;
 
 	/**
 	 * Creates new form Login
 	 */
-	public Login(JPanel contentPane, Scheduler scheduler) {
-		this.scheduler = scheduler;
+	public Login(JPanel contentPane, AMS scheduler) {
+		this.AMS = scheduler;
 		this.contentPane = contentPane;
 		initComponents();
 	}
@@ -119,8 +117,9 @@ public class Login extends javax.swing.JPanel {
         }//GEN-LAST:event_registerButtonActionPerformed
 
         private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-		if (scheduler.validateAgent(userField.getText(), passwordField.getText())) {
+		if (AMS.validateAgent(userField.getText(), passwordField.getText())) {
 			Main.sessionAgent = userField.getText();
+			Main.sessionAgentID = AMS.getAgentID(Main.sessionAgent);
 			CardLayout layout = (CardLayout) contentPane.getLayout();
 			layout.show(contentPane, "Appointments");
 			userField.setText("");
