@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -15,6 +16,8 @@ public class Appointments extends javax.swing.JPanel {
 	JPanel contentPane;
 	AMS AMS;
 	DefaultTableModel appointmentsModel;
+	DefaultTableModel propertiesModel;
+	DefaultTableModel clientsModel;
 	CardLayout layout;
 
 	/**
@@ -30,24 +33,52 @@ public class Appointments extends javax.swing.JPanel {
 		appointmentsModel.addColumn("Property");
 		appointmentsModel.addColumn("Client");
 
+		propertiesModel = new DefaultTableModel();
+
+		propertiesModel.addColumn("Property");
+		propertiesModel.addColumn("Schedule");
+		propertiesModel.addColumn("Client");
+
+		clientsModel = new DefaultTableModel();
+
+		clientsModel.addColumn("Client");
+		clientsModel.addColumn("Property");
+		clientsModel.addColumn("Schedule");
+
 		layout = (CardLayout) contentPane.getLayout();
 
 		initComponents();
 
-		updateViewerAppointments(1); // TEMPORARY MAGIC VALUE
 
 		sortBy.addItem("Property");
 		sortBy.addItem("Customer");
 		sortBy.addItem("Schedule");
 	}
 
-	private void updateViewerAppointments(int agentID) {
-		DefaultTableModel model = (DefaultTableModel) viewer.getModel();
-		model.setRowCount(0);
+	private void updateViewerAppointments() {
+		appointmentsModel.setRowCount(0);
 
-		appointmentsModel = AMS.getAppointments(appointmentsModel, agentID);
+		appointmentsModel = AMS.getAppointments(appointmentsModel);
 
 		viewer.setModel(appointmentsModel);
+		viewer.doLayout();
+	} 
+
+	private void updateViewerProperties() {
+		propertiesModel.setRowCount(0);
+
+		propertiesModel = AMS.getProperties(propertiesModel);
+
+		viewer.setModel(propertiesModel);
+		viewer.doLayout();
+	} 
+
+	private void updateViewerClients() {
+		clientsModel.setRowCount(0);
+
+		clientsModel = AMS.getClients(clientsModel);
+
+		viewer.setModel(clientsModel);
 		viewer.doLayout();
 	} 
 
@@ -248,11 +279,25 @@ public class Appointments extends javax.swing.JPanel {
         }// </editor-fold>//GEN-END:initComponents
 
         private void listByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listByActionPerformed
-                // TODO add your handling code here:
+		switch (listBy.getSelectedItem().toString()) {
+			case "Appointments":
+				updateViewerAppointments();
+				break;
+			case "Properties":
+				updateViewerProperties();
+				break;
+			case "Clients":
+				updateViewerClients();
+				break;
+			default:
+				throw new AssertionError();
+		}
+		System.out.println(listBy.getSelectedItem());
         }//GEN-LAST:event_listByActionPerformed
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
+		updateViewerAppointments();
         }//GEN-LAST:event_formComponentShown
 
         private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

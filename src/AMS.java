@@ -308,8 +308,16 @@ public class AMS {
 	    return clients;
     }
 
-    public DefaultTableModel getAppointments(DefaultTableModel model, int agentID) {
-	    String query = "SELECT * FROM appointment WHERE agent = ?";
+    public DefaultTableModel getAppointments(DefaultTableModel model) {
+	    String query = "SELECT DATE_FORMAT(appointment.schedule, '%b %d, %x %l:%i %p') as schedule, " + 
+		    "CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
+		    "CONCAT(client.fName, ' ', client.lName) AS client " + 
+		    "FROM appointment " + 
+		    "JOIN agent ON agent.id = appointment.agent " +
+		    "JOIN property ON property.id = appointment.property " +
+		    "JOIN client ON client.id = appointment.client " +
+		    "WHERE appointment.agent = ? " + 
+		    "ORDER BY schedule ASC";
 
 	    DefaultTableModel newModel = model;
 
@@ -317,23 +325,146 @@ public class AMS {
 		    connection = DriverManager.getConnection(url, user, password);
 
 		    PreparedStatement statement = connection.prepareStatement(query);
-		    statement.setInt(1, agentID);
+		    statement.setInt(1, Main.sessionAgentID);
 		    ResultSet result = statement.executeQuery();
 
 	            statement.close();
 	            connection.close();
 
+		    String currentSchedule = "";
+
 		    while (result.next()){
+			    String client = result.getString("client");
+			    String address = result.getString("address");
+			    String schedule = result.getString("schedule");
+
+			    if (address == null)
+				    address = " ";
+			    if (client == null)
+				    client = " ";
+
+			    if (schedule.equals(currentSchedule))
+				    schedule = " ";
+
 			    String row = 
-				    result.getTimestamp("schedule") + "," +
-				    result.getInt("property") + "," +
-				    result.getInt("client");
+				    schedule + ",," +
+				    address + ",," +
+				    client;
  
-	 		    String tuple[] = row.split(",");
+	 		    String tuple[] = row.split(",,");
 			    newModel.addRow(tuple);
+
+			    currentSchedule = schedule;
 		    }
 	    } catch (SQLException e) {
 		    System.out.println(e.getMessage());
+	    }
+
+	    return newModel;
+    }
+
+    public DefaultTableModel getProperties(DefaultTableModel model){
+	    String query = 
+		    "SELECT CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
+		    "DATE_FORMAT(appointment.schedule, '%b %d, %x %l:%i %p') as schedule, " + 
+		    "CONCAT(client.fName, ' ', client.lName) AS client " + 
+		    "FROM property " +
+		    "LEFT JOIN appointment ON property.id = appointment.property " +
+		    "LEFT JOIN client ON appointment.client = client.id " +
+		    "WHERE property.agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, Main.sessionAgentID);
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    String currentProperty = "";
+
+		    while (result.next()) {
+			    String client = result.getString("client");
+			    String address = result.getString("address");
+			    String schedule = result.getString("schedule");
+
+			    if (schedule == null)
+				    schedule = " ";
+			    if (client == null)
+				    client = " ";
+
+			    if (address.equals(currentProperty))
+				    address = " ";
+
+			    String row = 
+				    address + ",," +
+				    schedule + ",," +
+				    client;
+			    String[] tuple = row.split(",,");
+			    newModel.addRow(tuple);
+
+			    currentProperty = address;
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return newModel;
+    }
+
+    public DefaultTableModel getClients(DefaultTableModel model){
+	    String query = 
+		    "SELECT CONCAT(client.fName, ' ', client.lName) AS client, " + 
+		    "CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
+		    "DATE_FORMAT(appointment.schedule, '%b %d, %x %l:%i %p') as schedule " + 
+		    "FROM client " +
+		    "LEFT JOIN appointment ON client.id = appointment.client " +
+		    "LEFT JOIN property ON appointment.property = property.id " +
+		    "WHERE property.agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, Main.sessionAgentID);
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    String currentClient = "";
+
+		    while (result.next()) {
+			    String client = result.getString("client");
+			    String address = result.getString("address");
+			    String schedule = result.getString("schedule");
+
+			    if (address == null)
+				    address = " ";
+			    if (schedule == null)
+				    schedule = " ";
+
+			    if (client.equals(currentClient))
+				    client = " ";
+
+			    String row = 
+				    client + ",," +
+				    address + ",," +
+				    schedule;
+
+			    String[] tuple = row.split(",,");
+			    newModel.addRow(tuple);
+
+			    currentClient = client;
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
 	    }
 
 	    return newModel;
