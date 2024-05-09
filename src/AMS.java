@@ -360,7 +360,7 @@ public class AMS {
 	    return clients;
     }
 
-    public DefaultTableModel getAppointments(DefaultTableModel model) {
+    public DefaultTableModel getAppointments(DefaultTableModel model, int order) {
 	    String query = "SELECT DATE_FORMAT(appointment.schedule, '%b %d, %x %l:%i %p') as schedule, " + 
 		    "CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
 		    "CONCAT(client.fName, ' ', client.lName) AS client " + 
@@ -369,7 +369,10 @@ public class AMS {
 		    "JOIN property ON property.id = appointment.property " +
 		    "JOIN client ON client.id = appointment.client " +
 		    "WHERE appointment.agent = ? " + 
-		    "ORDER BY schedule ASC";
+		    "ORDER BY schedule";
+
+	    if (order == 1)
+		    query = query + " DESC";
 
 	    DefaultTableModel newModel = model;
 
@@ -415,7 +418,7 @@ public class AMS {
 	    return newModel;
     }
 
-    public DefaultTableModel getProperties(DefaultTableModel model){
+    public DefaultTableModel getProperties(DefaultTableModel model, int order){
 	    String query = 
 		    "SELECT CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
 		    "DATE_FORMAT(appointment.schedule, '%b %d, %x %l:%i %p') as schedule, " + 
@@ -423,7 +426,11 @@ public class AMS {
 		    "FROM property " +
 		    "LEFT JOIN appointment ON property.id = appointment.property " +
 		    "LEFT JOIN client ON appointment.client = client.id " +
-		    "WHERE property.agent = ?";
+		    "WHERE property.agent = ? " +
+		    "ORDER BY property";
+
+	    if (order == 1)
+		    query = query + " DESC";
 
 	    DefaultTableModel newModel = model;
 
@@ -468,7 +475,7 @@ public class AMS {
 	    return newModel;
     }
 
-    public DefaultTableModel getClients(DefaultTableModel model){
+    public DefaultTableModel getClients(DefaultTableModel model, int order){
 	    String query = 
 		    "SELECT CONCAT(client.fName, ' ', client.lName) AS client, " + 
 		    "CONCAT('Lot ', property.hNumber, ', ', property.street, ' St., ', property.village, ', ', property.barangay) AS address, " +
@@ -476,7 +483,11 @@ public class AMS {
 		    "FROM client " +
 		    "LEFT JOIN appointment ON client.id = appointment.client " +
 		    "LEFT JOIN property ON appointment.property = property.id " +
-		    "WHERE client.agent = ?";
+		    "WHERE client.agent = ? " +
+		    "ORDER BY client";
+
+	    if (order == 1)
+		    query = query + " DESC";
 
 	    DefaultTableModel newModel = model;
 
@@ -522,7 +533,7 @@ public class AMS {
 	    return newModel;
     }
 
-    public DefaultTableModel getClientsIDs(DefaultTableModel model){
+    public DefaultTableModel getClientsIDs(DefaultTableModel model, int order){
 	    String query = 
 		    "SELECT client.id, " + 
 		    "property.id, " + 
@@ -530,7 +541,11 @@ public class AMS {
 		    "FROM client " +
 		    "LEFT JOIN appointment ON client.id = appointment.client " +
 		    "LEFT JOIN property ON appointment.property = property.id " +
-		    "WHERE client.agent = ?";
+		    "WHERE client.agent = ? " + 
+		    "ORDER BY client";
+
+	    if (order == 1)
+		    query = query + " DESC";
 
 	    DefaultTableModel newModel = model;
 
@@ -564,7 +579,7 @@ public class AMS {
 	    return newModel;
     }
 
-    public DefaultTableModel getPropertyIDs(DefaultTableModel model){
+    public DefaultTableModel getPropertyIDs(DefaultTableModel model, int order){
 	    String query = 
 		    "SELECT property.id, " + 
 		    "appointment.id, " + 
@@ -572,7 +587,11 @@ public class AMS {
 		    "FROM property " +
 		    "LEFT JOIN appointment ON property.id = appointment.property " +
 		    "LEFT JOIN client ON appointment.client = client.id " +
-		    "WHERE property.agent = ?";
+		    "WHERE property.agent = ? " +
+		    "ORDER BY property";
+
+	    if (order == 1)
+		    query = query + " DESC";
 
 	    DefaultTableModel newModel = model;
 
@@ -605,7 +624,7 @@ public class AMS {
 	    return newModel;
     }
 
-    public DefaultTableModel getAppointmentIDs(DefaultTableModel model){
+    public DefaultTableModel getAppointmentIDs(DefaultTableModel model, int order){
 	    String query = 
 		    "SELECT appointment.id, " + 
 		    "property.id, " + 
@@ -613,7 +632,12 @@ public class AMS {
 		    "FROM property " +
 		    "LEFT JOIN appointment ON property.id = appointment.property " +
 		    "LEFT JOIN client ON appointment.client = client.id " +
-		    "WHERE appointment.agent = ?";
+		    "WHERE appointment.agent = ? " +
+		    "ORDER BY appointment";
+
+	    if (order == 1)
+		    query = query + " DESC";
+
 
 	    DefaultTableModel newModel = model;
 

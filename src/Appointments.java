@@ -80,19 +80,14 @@ public class Appointments extends javax.swing.JPanel {
 		layout = (CardLayout) contentPane.getLayout();
 
 		initComponents();
-
-
-		sortBy.addItem("Property");
-		sortBy.addItem("Customer");
-		sortBy.addItem("Schedule");
 	}
 
 	private void updateViewerAppointments() {
 		appointmentsModel.setRowCount(0);
 		appointmentIDsModel.setRowCount(0);
 
-		appointmentsModel = AMS.getAppointments(appointmentsModel);
-		appointmentIDsModel = AMS.getAppointmentIDs(appointmentIDsModel);
+		appointmentsModel = AMS.getAppointments(appointmentsModel, sortBy.getSelectedIndex());
+		appointmentIDsModel = AMS.getAppointmentIDs(appointmentIDsModel, sortBy.getSelectedIndex());
 
 		viewer.setModel(appointmentsModel);
 		viewer.doLayout();
@@ -102,8 +97,8 @@ public class Appointments extends javax.swing.JPanel {
 		propertiesModel.setRowCount(0);
 		propertyIDsModel.setRowCount(0);
 
-		propertiesModel = AMS.getProperties(propertiesModel);
-		propertyIDsModel = AMS.getPropertyIDs(propertyIDsModel);
+		propertiesModel = AMS.getProperties(propertiesModel, sortBy.getSelectedIndex());
+		propertyIDsModel = AMS.getPropertyIDs(propertyIDsModel, sortBy.getSelectedIndex());
 
 		viewer.setModel(propertiesModel);
 		viewer.doLayout();
@@ -113,8 +108,8 @@ public class Appointments extends javax.swing.JPanel {
 		clientsModel.setRowCount(0);
 		clientIDsModel.setRowCount(0);
 
-		clientsModel = AMS.getClients(clientsModel);
-		clientIDsModel = AMS.getClientsIDs(clientIDsModel);
+		clientsModel = AMS.getClients(clientsModel, sortBy.getSelectedIndex());
+		clientIDsModel = AMS.getClientsIDs(clientIDsModel, sortBy.getSelectedIndex());
 
 		viewer.setModel(clientsModel);
 		viewer.doLayout();
@@ -175,12 +170,21 @@ public class Appointments extends javax.swing.JPanel {
 
                 jPanel1.setBackground(new java.awt.Color(241, 218, 125));
 
+                filterByLabel.setForeground(new java.awt.Color(0, 0, 0));
                 filterByLabel.setText("Filter by...");
 
+                filterBy.setForeground(new java.awt.Color(0, 0, 0));
                 filterBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
 
-                sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
+                sortBy.setForeground(new java.awt.Color(0, 0, 0));
+                sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", "Descending" }));
+                sortBy.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                sortByActionPerformed(evt);
+                        }
+                });
 
+                sortByLabel.setForeground(new java.awt.Color(0, 0, 0));
                 sortByLabel.setText("Sort by...");
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -212,9 +216,10 @@ public class Appointments extends javax.swing.JPanel {
 
                 jPanel2.setBackground(new java.awt.Color(241, 218, 125));
 
+                addLabel.setForeground(new java.awt.Color(0, 0, 0));
                 addLabel.setText("Add...");
 
-                addPropertyButton.setForeground(new java.awt.Color(255, 102, 0));
+                addPropertyButton.setForeground(new java.awt.Color(0, 0, 0));
                 addPropertyButton.setText("Property");
                 addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +227,7 @@ public class Appointments extends javax.swing.JPanel {
                         }
                 });
 
-                addCustomerButton.setForeground(new java.awt.Color(255, 102, 0));
+                addCustomerButton.setForeground(new java.awt.Color(0, 0, 0));
                 addCustomerButton.setText("Customer");
                 addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +235,7 @@ public class Appointments extends javax.swing.JPanel {
                         }
                 });
 
-                addAppointmentButton.setForeground(new java.awt.Color(255, 102, 0));
+                addAppointmentButton.setForeground(new java.awt.Color(0, 0, 0));
                 addAppointmentButton.setText("Appointment");
                 addAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +243,7 @@ public class Appointments extends javax.swing.JPanel {
                         }
                 });
 
-                editButton.setForeground(new java.awt.Color(255, 102, 0));
+                editButton.setForeground(new java.awt.Color(0, 0, 0));
                 editButton.setText("Edit");
                 editButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +251,7 @@ public class Appointments extends javax.swing.JPanel {
                         }
                 });
 
-                removeButton.setForeground(new java.awt.Color(255, 102, 0));
+                removeButton.setForeground(new java.awt.Color(0, 0, 0));
                 removeButton.setText("Remove");
 
                 javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -396,7 +401,7 @@ public class Appointments extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, Short.MAX_VALUE)
                                                 .addGap(15, 15, 15))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
@@ -418,8 +423,22 @@ public class Appointments extends javax.swing.JPanel {
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
+		switch (mode) {
+			case "Appointments":
 				updateViewerAppointments();
 				viewing = appointmentIDsModel;
+				break;
+			case "Properties":
+				updateViewerProperties();
+				viewing = propertyIDsModel;
+				break;
+			case "Clients":
+				updateViewerClients();
+				viewing = clientIDsModel;
+				break;
+			default:
+				throw new AssertionError();
+		}
         }//GEN-LAST:event_formComponentShown
 
         private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
@@ -491,6 +510,26 @@ public class Appointments extends javax.swing.JPanel {
 				throw new AssertionError();
 		}
         }//GEN-LAST:event_editButtonActionPerformed
+
+        private void sortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByActionPerformed
+		switch (mode) {
+			case "Appointments":
+				updateViewerAppointments();
+				viewing = appointmentIDsModel;
+				break;
+			case "Properties":
+				updateViewerProperties();
+				viewing = propertyIDsModel;
+				break;
+			case "Clients":
+				updateViewerClients();
+				viewing = clientIDsModel;
+				break;
+			default:
+				throw new AssertionError();
+		}
+		System.out.println(sortBy.getSelectedIndex());
+        }//GEN-LAST:event_sortByActionPerformed
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;

@@ -288,6 +288,7 @@ public class EditAppointment extends javax.swing.JPanel {
         }// </editor-fold>//GEN-END:initComponents
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
 		clients = AMS.getClients();
 
 		for (int i = 0; i < clients.length; i++){

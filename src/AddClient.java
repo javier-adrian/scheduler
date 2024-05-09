@@ -63,6 +63,11 @@ public class AddClient extends javax.swing.JPanel {
                 setMaximumSize(new java.awt.Dimension(720, 576));
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
+                addComponentListener(new java.awt.event.ComponentAdapter() {
+                        public void componentShown(java.awt.event.ComponentEvent evt) {
+                                formComponentShown(evt);
+                        }
+                });
 
                 fNameLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
                 fNameLabel1.setText("First Name");
@@ -253,8 +258,7 @@ public class AddClient extends javax.swing.JPanel {
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                 .addComponent(addButton))
                                                         .addComponent(contactNoField)
-                                                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap())
                 );
                 layout.setVerticalGroup(
@@ -334,6 +338,10 @@ public class AddClient extends javax.swing.JPanel {
                 Main.sessionAgentID = 0;
                 layout.show(contentPane, "Log in");
         }//GEN-LAST:event_logoutButtonActionPerformed
+
+        private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
+        }//GEN-LAST:event_formComponentShown
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables

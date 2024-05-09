@@ -276,6 +276,7 @@ public class AddAppointment extends javax.swing.JPanel {
         }// </editor-fold>//GEN-END:initComponents
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
 		clients = AMS.getClients();
 
 		for (int i = 0; i < clients.length; i++){
@@ -315,6 +316,15 @@ public class AddAppointment extends javax.swing.JPanel {
                         hour,
                         (int) minuteSpinner.getValue()
                 );
+
+		clientChooser.removeAllItems();
+		propertyChooser.removeAllItems();
+		monthChooser.setSelectedIndex(0);
+		dateSpinner.setValue(1);
+		yearSpinner.setValue(24);
+		hourSpinner.setValue(1);
+		minuteSpinner.setValue(0);
+		meridiemChooser.setSelectedIndex(0);
         }//GEN-LAST:event_addButtonActionPerformed
 
         private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

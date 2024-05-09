@@ -303,6 +303,7 @@ public class EditProperty extends javax.swing.JPanel {
         }// </editor-fold>//GEN-END:initComponents
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
 		regionField.setText(property.region);
 		provinceField.setText(property.province);
 		cityField.setText(property.city);
@@ -313,12 +314,40 @@ public class EditProperty extends javax.swing.JPanel {
         }//GEN-LAST:event_formComponentShown
 
         private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-                //		scheduler.insertProperty("IV-A", "Cavite", "Dasmariñas", "Salawag", "Phase 3 Golden city", "Milkita", "45");
-                AMS.insertProperty(regionField.getText(), provinceField.getText(), cityField.getText(), barangayField.getText(), villageField.getText(), streetField.getText(), hNumberField.getText());
+		Property updatedProperty = new Property(ID, "");
+		updatedProperty.region = regionField.getText();
+		updatedProperty.province = provinceField.getText();
+		updatedProperty.city = cityField.getText();
+		updatedProperty.barangay = barangayField.getText();
+		updatedProperty.village = villageField.getText();
+		updatedProperty.street = streetField.getText();
+		updatedProperty.hNumber = hNumberField.getText();
+
+		AMS.updateProperty(ID, updatedProperty);
+
+		layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		regionField.setText("");
+		provinceField.setText("");
+		cityField.setText("");
+		barangayField.setText("");
+		villageField.setText("");
+		streetField.setText("");
+		hNumberField.setText("");
         }//GEN-LAST:event_confirmButtonActionPerformed
 
         private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
                 layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		regionField.setText("");
+		provinceField.setText("");
+		cityField.setText("");
+		barangayField.setText("");
+		villageField.setText("");
+		streetField.setText("");
+		hNumberField.setText("");
         }//GEN-LAST:event_cancelButtonActionPerformed
 
         private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

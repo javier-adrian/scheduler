@@ -312,6 +312,7 @@ public class EditClient extends javax.swing.JPanel {
         }// </editor-fold>//GEN-END:initComponents
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
 		fNameField.setText(client.fName);
 		lNameField.setText(client.lName);
 		emailField.setText(client.email);
@@ -331,16 +332,32 @@ public class EditClient extends javax.swing.JPanel {
         }//GEN-LAST:event_contactNoFieldActionPerformed
 
         private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-                AMS.insertClient(
-                        fNameField.getText(),
-                        lNameField.getText(),
-                        emailField.getText(),
-                        Integer.parseInt(contactNoField.getText())
-                );
+		Client updatedClient = new Client(ID);
+
+		updatedClient.fName = fNameField.getText();
+		updatedClient.lName = lNameField.getText();
+		updatedClient.email = emailField.getText();
+		updatedClient.contactNo = Integer.parseInt(contactNoField.getText());
+
+		AMS.updateClient(ID, updatedClient);
+
+		layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		fNameField.setText("");
+		lNameField.setText("");
+		emailField.setText("");
+		contactNoField.setText("");
         }//GEN-LAST:event_confirmButtonActionPerformed
 
         private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
                 layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		fNameField.setText("");
+		lNameField.setText("");
+		emailField.setText("");
+		contactNoField.setText("");
         }//GEN-LAST:event_cancelButtonActionPerformed
 
         private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

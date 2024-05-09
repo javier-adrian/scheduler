@@ -63,6 +63,11 @@ public class AddProperty extends javax.swing.JPanel {
                 setMaximumSize(new java.awt.Dimension(720, 576));
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
+                addComponentListener(new java.awt.event.ComponentAdapter() {
+                        public void componentShown(java.awt.event.ComponentEvent evt) {
+                                formComponentShown(evt);
+                        }
+                });
 
                 regionLabel1.setText("Region");
 
@@ -305,6 +310,10 @@ public class AddProperty extends javax.swing.JPanel {
                 Main.sessionAgentID = 0;
                 layout.show(contentPane, "Log in");
         }//GEN-LAST:event_logoutButtonActionPerformed
+
+        private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
+        }//GEN-LAST:event_formComponentShown
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
