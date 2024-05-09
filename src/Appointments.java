@@ -25,6 +25,7 @@ public class Appointments extends javax.swing.JPanel {
 	EditAppointment appointmentEditor;
 	EditProperty propertyEditor;
 	EditClient clientEditor;
+	String mode;
 
 	int row;
 	int column;
@@ -38,6 +39,7 @@ public class Appointments extends javax.swing.JPanel {
 		this.appointmentEditor = appointmentEditor;
 		this.propertyEditor = propertyEditor;
 		this.clientEditor = clientEditor;
+		mode = "Appointments";
 
 		appointmentsModel = new DefaultTableModel();
 
@@ -126,24 +128,29 @@ public class Appointments extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
-                java.awt.GridBagConstraints gridBagConstraints;
 
-                userLabel = new javax.swing.JLabel();
-                jScrollPane1 = new javax.swing.JScrollPane();
+                jScrollPane2 = new javax.swing.JScrollPane();
                 viewer = new javax.swing.JTable();
-                filterBy = new javax.swing.JComboBox<>();
+                jPanel1 = new javax.swing.JPanel();
                 filterByLabel = new javax.swing.JLabel();
-                sortByLabel = new javax.swing.JLabel();
+                filterBy = new javax.swing.JComboBox<>();
                 sortBy = new javax.swing.JComboBox<>();
-                addPropertyButton = new javax.swing.JButton();
+                sortByLabel = new javax.swing.JLabel();
+                jPanel2 = new javax.swing.JPanel();
                 addLabel = new javax.swing.JLabel();
+                addPropertyButton = new javax.swing.JButton();
                 addCustomerButton = new javax.swing.JButton();
                 addAppointmentButton = new javax.swing.JButton();
-                logoutButton = new javax.swing.JButton();
-                listByLabel = new javax.swing.JLabel();
-                listBy = new javax.swing.JComboBox<>();
                 editButton = new javax.swing.JButton();
                 removeButton = new javax.swing.JButton();
+                jPanel3 = new javax.swing.JPanel();
+                jLabel1 = new javax.swing.JLabel();
+                jLabel2 = new javax.swing.JLabel();
+                userLabel = new javax.swing.JLabel();
+                logoutButton = new javax.swing.JButton();
+                propertiesButton = new javax.swing.JButton();
+                clientsButton = new javax.swing.JButton();
+                scheduleButton = new javax.swing.JButton();
 
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
@@ -152,15 +159,6 @@ public class Appointments extends javax.swing.JPanel {
                                 formComponentShown(evt);
                         }
                 });
-                setLayout(new java.awt.GridBagLayout());
-
-                userLabel.setText("User");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(40, 20, 0, 0);
-                add(userLabel, gridBagConstraints);
 
                 viewer.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -173,219 +171,298 @@ public class Appointments extends javax.swing.JPanel {
                                 "Property", "Customer", "Schedule"
                         }
                 ));
-                jScrollPane1.setViewportView(viewer);
+                jScrollPane2.setViewportView(viewer);
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.gridwidth = 6;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                gridBagConstraints.weighty = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
-                add(jScrollPane1, gridBagConstraints);
-
-                filterBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 20);
-                add(filterBy, gridBagConstraints);
+                jPanel1.setBackground(new java.awt.Color(241, 218, 125));
 
                 filterByLabel.setText("Filter by...");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 20);
-                add(filterByLabel, gridBagConstraints);
 
-                sortByLabel.setText("Sort by...");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 20);
-                add(sortByLabel, gridBagConstraints);
+                filterBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
 
                 sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Property", "Client", "Day", "Time" }));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 20);
-                add(sortBy, gridBagConstraints);
 
+                sortByLabel.setText("Sort by...");
+
+                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+                jPanel1.setLayout(jPanel1Layout);
+                jPanel1Layout.setHorizontalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(filterByLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(filterBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(sortByLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83))
+                );
+                jPanel1Layout.setVerticalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(38, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(filterByLabel)
+                                        .addComponent(filterBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(sortByLabel)
+                                        .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32))
+                );
+
+                jPanel2.setBackground(new java.awt.Color(241, 218, 125));
+
+                addLabel.setText("Add...");
+
+                addPropertyButton.setForeground(new java.awt.Color(255, 102, 0));
                 addPropertyButton.setText("Property");
                 addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 addPropertyButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 40, 20);
-                add(addPropertyButton, gridBagConstraints);
 
-                addLabel.setText("Add...");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 40, 20);
-                add(addLabel, gridBagConstraints);
-
+                addCustomerButton.setForeground(new java.awt.Color(255, 102, 0));
                 addCustomerButton.setText("Customer");
                 addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 addCustomerButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 40, 20);
-                add(addCustomerButton, gridBagConstraints);
 
+                addAppointmentButton.setForeground(new java.awt.Color(255, 102, 0));
                 addAppointmentButton.setText("Appointment");
                 addAppointmentButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 addAppointmentButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 40, 20);
-                add(addAppointmentButton, gridBagConstraints);
 
-                logoutButton.setText("Log out");
-                logoutButton.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                logoutButtonActionPerformed(evt);
-                        }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.weightx = 1.0;
-                gridBagConstraints.insets = new java.awt.Insets(40, 20, 0, 20);
-                add(logoutButton, gridBagConstraints);
-
-                listByLabel.setText("List...");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-                add(listByLabel, gridBagConstraints);
-
-                listBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appointments", "Properties", "Clients" }));
-                listBy.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                listByActionPerformed(evt);
-                        }
-                });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-                add(listBy, gridBagConstraints);
-
+                editButton.setForeground(new java.awt.Color(255, 102, 0));
                 editButton.setText("Edit");
                 editButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 editButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
-                add(editButton, gridBagConstraints);
 
+                removeButton.setForeground(new java.awt.Color(255, 102, 0));
                 removeButton.setText("Remove");
-                removeButton.addActionListener(new java.awt.event.ActionListener() {
+
+                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+                jPanel2.setLayout(jPanel2Layout);
+                jPanel2Layout.setHorizontalGroup(
+                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(58, 58, 58)
+                                                .addComponent(addLabel)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(addPropertyButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(addCustomerButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(addAppointmentButton)
+                                                .addGap(149, 149, 149))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(removeButton)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                );
+                jPanel2Layout.setVerticalGroup(
+                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(17, 17, 17)
+                                                .addComponent(editButton))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(addLabel)
+                                                        .addComponent(addPropertyButton)
+                                                        .addComponent(addCustomerButton)
+                                                        .addComponent(addAppointmentButton))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(removeButton)
+                                .addContainerGap(61, Short.MAX_VALUE))
+                );
+
+                jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+                jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+                jLabel1.setText("EASE-STATE");
+
+                jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LOGO.png"))); // NOI18N
+                jLabel2.setText("jLabel2");
+
+                userLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                userLabel.setForeground(new java.awt.Color(255, 255, 255));
+                userLabel.setText("USER INFO");
+
+                logoutButton.setBackground(new java.awt.Color(153, 153, 153));
+                logoutButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                logoutButton.setForeground(new java.awt.Color(255, 255, 255));
+                logoutButton.setText("Log out");
+                logoutButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                removeButtonActionPerformed(evt);
+                                logoutButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 40, 0);
-                add(removeButton, gridBagConstraints);
-        }// </editor-fold>//GEN-END:initComponents
 
-        private void listByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listByActionPerformed
-		switch (listBy.getSelectedItem().toString()) {
-			case "Appointments":
-				updateViewerAppointments();
-				viewing = appointmentIDsModel;
-				break;
-			case "Properties":
-				updateViewerProperties();
-				viewing = propertyIDsModel;
-				break;
-			case "Clients":
-				updateViewerClients();
-				viewing = clientIDsModel;
-				break;
-			default:
-				throw new AssertionError();
-		}
-        }//GEN-LAST:event_listByActionPerformed
+                propertiesButton.setBackground(new java.awt.Color(153, 153, 153));
+                propertiesButton.setForeground(new java.awt.Color(255, 255, 255));
+                propertiesButton.setText("PROPERTY");
+                propertiesButton.setBorderPainted(false);
+                propertiesButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                propertiesButtonActionPerformed(evt);
+                        }
+                });
+
+                clientsButton.setBackground(new java.awt.Color(153, 153, 153));
+                clientsButton.setForeground(new java.awt.Color(255, 255, 255));
+                clientsButton.setText("CLIENT");
+                clientsButton.setBorderPainted(false);
+                clientsButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                clientsButtonActionPerformed(evt);
+                        }
+                });
+
+                scheduleButton.setBackground(new java.awt.Color(153, 153, 153));
+                scheduleButton.setForeground(new java.awt.Color(255, 255, 255));
+                scheduleButton.setText("SCHEDULE");
+                scheduleButton.setBorderPainted(false);
+                scheduleButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                scheduleButtonActionPerformed(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+                jPanel3.setLayout(jPanel3Layout);
+                jPanel3Layout.setHorizontalGroup(
+                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel1))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(48, 48, 48)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(scheduleButton)
+                                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(clientsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(propertiesButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addComponent(logoutButton)
+                                                        .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(18, Short.MAX_VALUE))
+                );
+                jPanel3Layout.setVerticalGroup(
+                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1))
+                                .addGap(97, 97, 97)
+                                .addComponent(propertiesButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clientsButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(scheduleButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(logoutButton)
+                                .addGap(39, 39, 39))
+                );
+
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                this.setLayout(layout);
+                layout.setHorizontalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                .addGap(15, 15, 15))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(14, 14, 14)))
+                                .addGap(8, 8, 8))
+                );
+                layout.setVerticalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                );
+        }// </editor-fold>//GEN-END:initComponents
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
-		switch (listBy.getSelectedItem().toString()) {
-			case "Appointments":
 				updateViewerAppointments();
 				viewing = appointmentIDsModel;
-				break;
-			case "Properties":
-				updateViewerProperties();
-				viewing = propertyIDsModel;
-				break;
-			case "Clients":
-				updateViewerClients();
-				viewing = clientIDsModel;
-				break;
-			default:
-				throw new AssertionError();
-		}
         }//GEN-LAST:event_formComponentShown
 
-        private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-                Main.sessionAgent = null;
-		Main.sessionAgentID = 0;
-		layout.show(contentPane, "Log in");
-        }//GEN-LAST:event_logoutButtonActionPerformed
-
         private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
-		layout.show(contentPane, "Add Property");
+                layout.show(contentPane, "Add Property");
         }//GEN-LAST:event_addPropertyButtonActionPerformed
 
         private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-		layout.show(contentPane, "Add Client");
+                layout.show(contentPane, "Add Client");
         }//GEN-LAST:event_addCustomerButtonActionPerformed
 
         private void addAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAppointmentButtonActionPerformed
-		layout.show(contentPane, "Add Appointment");
+                layout.show(contentPane, "Add Appointment");
         }//GEN-LAST:event_addAppointmentButtonActionPerformed
+
+        private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+                Main.sessionAgent = null;
+                Main.sessionAgentID = 0;
+                layout.show(contentPane, "Log in");
+        }//GEN-LAST:event_logoutButtonActionPerformed
+
+        private void propertiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesButtonActionPerformed
+		mode = "Properties";
+				updateViewerProperties();
+				viewing = propertyIDsModel;
+        }//GEN-LAST:event_propertiesButtonActionPerformed
+
+        private void clientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsButtonActionPerformed
+		mode = "Clients";
+				updateViewerClients();
+				viewing = clientIDsModel;
+        }//GEN-LAST:event_clientsButtonActionPerformed
+
+        private void scheduleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleButtonActionPerformed
+		mode = "Appointments";
+				updateViewerAppointments();
+				viewing = appointmentIDsModel;
+        }//GEN-LAST:event_scheduleButtonActionPerformed
 
         private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
 		int row = viewer.getSelectedRow();
 		int column = viewer.getSelectedColumn();
 
-		switch (listBy.getSelectedItem().toString()) {
+		switch (mode) {
 			case "Appointments":
 				appointmentEditor.edit(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
 				layout.show(contentPane, "Edit Appointment");
@@ -415,47 +492,25 @@ public class Appointments extends javax.swing.JPanel {
 		}
         }//GEN-LAST:event_editButtonActionPerformed
 
-        private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-		int row = viewer.getSelectedRow();
-		int column = viewer.getSelectedColumn();
-
-		switch (listBy.getSelectedItem().toString()) {
-			case "Appointments":
-				AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
-				updateViewerAppointments();
-				break;
-			case "Properties":
-				if (viewer.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString().equals(" "))
-					AMS.removeProperty(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
-				else
-					AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
-				updateViewerProperties();
-				break;
-			case "Clients":
-				if (viewer.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString().equals(" "))
-					AMS.removeClient(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
-				else
-					AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
-				updateViewerClients();
-				break;
-			default:
-				throw new AssertionError();
-		}
-        }//GEN-LAST:event_removeButtonActionPerformed
-
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;
         private javax.swing.JButton addCustomerButton;
         private javax.swing.JLabel addLabel;
         private javax.swing.JButton addPropertyButton;
+        private javax.swing.JButton clientsButton;
         private javax.swing.JButton editButton;
         private javax.swing.JComboBox<String> filterBy;
         private javax.swing.JLabel filterByLabel;
-        private javax.swing.JScrollPane jScrollPane1;
-        private javax.swing.JComboBox<String> listBy;
-        private javax.swing.JLabel listByLabel;
+        private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel2;
+        private javax.swing.JPanel jPanel1;
+        private javax.swing.JPanel jPanel2;
+        private javax.swing.JPanel jPanel3;
+        private javax.swing.JScrollPane jScrollPane2;
         private javax.swing.JButton logoutButton;
+        private javax.swing.JButton propertiesButton;
         private javax.swing.JButton removeButton;
+        private javax.swing.JButton scheduleButton;
         private javax.swing.JComboBox<String> sortBy;
         private javax.swing.JLabel sortByLabel;
         private javax.swing.JLabel userLabel;

@@ -31,160 +31,203 @@ public class Register extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
-                java.awt.GridBagConstraints gridBagConstraints;
 
+                jPanel1 = new javax.swing.JPanel();
+                jLabel1 = new javax.swing.JLabel();
+                jLabel2 = new javax.swing.JLabel();
                 fNameLabel = new javax.swing.JLabel();
                 fNameField = new javax.swing.JTextField();
                 lNameLabel = new javax.swing.JLabel();
+                lNameField = new javax.swing.JTextField();
                 emailLabel = new javax.swing.JLabel();
                 emailField = new javax.swing.JTextField();
                 contactLabel = new javax.swing.JLabel();
+                contactField = new javax.swing.JTextField();
                 usernameLabel = new javax.swing.JLabel();
                 usernameField = new javax.swing.JTextField();
                 passwordLabel = new javax.swing.JLabel();
                 passwordField = new javax.swing.JPasswordField();
                 registerButton = new javax.swing.JButton();
-                lNameField = new javax.swing.JTextField();
-                contactField = new javax.swing.JTextField();
                 backButton = new javax.swing.JButton();
 
+                setBackground(new java.awt.Color(255, 153, 0));
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
-                setLayout(new java.awt.GridBagLayout());
 
+                jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+                jPanel1.setForeground(new java.awt.Color(204, 204, 204));
+
+                jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LOGO.png"))); // NOI18N
+                jLabel1.setMaximumSize(new java.awt.Dimension(64, 64));
+                jLabel1.setMinimumSize(new java.awt.Dimension(64, 64));
+                jLabel1.setPreferredSize(new java.awt.Dimension(64, 64));
+
+                jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+                jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+                jLabel2.setForeground(new java.awt.Color(255, 153, 0));
+                jLabel2.setText("REGISTRATION");
+
+                fNameLabel.setBackground(new java.awt.Color(0, 0, 0));
+                fNameLabel.setForeground(new java.awt.Color(255, 153, 0));
                 fNameLabel.setText("First Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(fNameLabel, gridBagConstraints);
 
                 fNameField.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 fNameFieldActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(fNameField, gridBagConstraints);
 
+                lNameLabel.setBackground(new java.awt.Color(0, 0, 0));
+                lNameLabel.setForeground(new java.awt.Color(255, 153, 0));
                 lNameLabel.setText("Last Name");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(lNameLabel, gridBagConstraints);
 
+                emailLabel.setBackground(new java.awt.Color(0, 0, 0));
+                emailLabel.setForeground(new java.awt.Color(255, 153, 0));
                 emailLabel.setText("E-mail");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(emailLabel, gridBagConstraints);
 
                 emailField.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 emailFieldActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(emailField, gridBagConstraints);
 
+                contactLabel.setBackground(new java.awt.Color(0, 0, 0));
+                contactLabel.setForeground(new java.awt.Color(255, 153, 0));
                 contactLabel.setText("Contact Number (+639)");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(contactLabel, gridBagConstraints);
 
+                usernameLabel.setBackground(new java.awt.Color(0, 0, 0));
+                usernameLabel.setForeground(new java.awt.Color(255, 153, 0));
                 usernameLabel.setText("Username");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(usernameLabel, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 4;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(usernameField, gridBagConstraints);
 
+                passwordLabel.setBackground(new java.awt.Color(0, 0, 0));
+                passwordLabel.setForeground(new java.awt.Color(255, 153, 0));
                 passwordLabel.setText("Password");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 25);
-                add(passwordLabel, gridBagConstraints);
 
                 passwordField.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 passwordFieldActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 5;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(passwordField, gridBagConstraints);
 
+                registerButton.setBackground(new java.awt.Color(0, 0, 0));
+                registerButton.setForeground(new java.awt.Color(255, 153, 0));
                 registerButton.setText("Register");
                 registerButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 registerButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 6;
-                gridBagConstraints.gridwidth = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(20, 100, 0, 100);
-                add(registerButton, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(lNameField, gridBagConstraints);
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-                add(contactField, gridBagConstraints);
 
+                backButton.setBackground(new java.awt.Color(0, 0, 0));
+                backButton.setForeground(new java.awt.Color(255, 153, 0));
                 backButton.setText("Back");
                 backButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 backButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 7;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-                add(backButton, gridBagConstraints);
+
+                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+                jPanel1.setLayout(jPanel1Layout);
+                jPanel1Layout.setHorizontalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(usernameLabel)
+                                                        .addComponent(contactLabel)
+                                                        .addComponent(passwordLabel))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lNameLabel)
+                                                        .addComponent(fNameLabel)
+                                                        .addComponent(emailLabel)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                                .addGap(10, 10, 10)
+                                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                                .addComponent(jLabel2)
+                                                .addGap(55, 55, 55))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                .addGap(147, 147, 147)
+                                                .addComponent(registerButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(backButton))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(lNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(fNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(21, 21, 21))
+                );
+                jPanel1Layout.setVerticalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(38, 38, 38)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(45, 45, 45))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)))
+                                .addComponent(fNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(contactLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(usernameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(passwordLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(registerButton)
+                                        .addComponent(backButton))
+                                .addContainerGap(28, Short.MAX_VALUE))
+                );
+
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                this.setLayout(layout);
+                layout.setHorizontalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(169, Short.MAX_VALUE))
+                );
+                layout.setVerticalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(106, Short.MAX_VALUE))
+                );
         }// </editor-fold>//GEN-END:initComponents
 
         private void fNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameFieldActionPerformed
@@ -201,25 +244,25 @@ public class Register extends javax.swing.JPanel {
 
         private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
                 AMS.insertAgent(fNameField.getText(), lNameField.getText(), Integer.parseInt(contactField.getText()), emailField.getText(), usernameField.getText(), passwordField.getText());
-		contactField.setText("");
-		emailField.setText("");
-		fNameField.setText("");
-		lNameField.setText("");
-		passwordField.setText("");
-		usernameField.setText("");
-		CardLayout layout = (CardLayout) contentPane.getLayout();
-		layout.show(contentPane, "Log in");
+                contactField.setText("");
+                emailField.setText("");
+                fNameField.setText("");
+                lNameField.setText("");
+                passwordField.setText("");
+                usernameField.setText("");
+                CardLayout layout = (CardLayout) contentPane.getLayout();
+                layout.show(contentPane, "Log in");
         }//GEN-LAST:event_registerButtonActionPerformed
 
         private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-		contactField.setText("");
-		emailField.setText("");
-		fNameField.setText("");
-		lNameField.setText("");
-		passwordField.setText("");
-		usernameField.setText("");
-		CardLayout layout = (CardLayout) contentPane.getLayout();
-		layout.show(contentPane, "Log in");
+                contactField.setText("");
+                emailField.setText("");
+                fNameField.setText("");
+                lNameField.setText("");
+                passwordField.setText("");
+                usernameField.setText("");
+                CardLayout layout = (CardLayout) contentPane.getLayout();
+                layout.show(contentPane, "Log in");
         }//GEN-LAST:event_backButtonActionPerformed
 
 
@@ -231,6 +274,9 @@ public class Register extends javax.swing.JPanel {
         private javax.swing.JLabel emailLabel;
         private javax.swing.JTextField fNameField;
         private javax.swing.JLabel fNameLabel;
+        private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel2;
+        private javax.swing.JPanel jPanel1;
         private javax.swing.JTextField lNameField;
         private javax.swing.JLabel lNameLabel;
         private javax.swing.JPasswordField passwordField;

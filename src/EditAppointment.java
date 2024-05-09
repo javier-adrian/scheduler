@@ -42,24 +42,31 @@ public class EditAppointment extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
-                java.awt.GridBagConstraints gridBagConstraints;
 
-                clientLabel = new javax.swing.JLabel();
+                clientLabel1 = new javax.swing.JLabel();
                 clientChooser = new javax.swing.JComboBox<>();
-                propertyLabel = new javax.swing.JLabel();
+                propertyLabel1 = new javax.swing.JLabel();
                 propertyChooser = new javax.swing.JComboBox<>();
-                scheduleLabel = new javax.swing.JLabel();
+                scheduleLabel1 = new javax.swing.JLabel();
                 dateSpinner = new javax.swing.JSpinner();
                 yearSpinner = new javax.swing.JSpinner();
-                dateComma = new javax.swing.JLabel();
-                yearPrefix = new javax.swing.JLabel();
+                dateComma1 = new javax.swing.JLabel();
+                yearPrefix1 = new javax.swing.JLabel();
                 hourSpinner = new javax.swing.JSpinner();
-                timeSeparator = new javax.swing.JLabel();
+                timeSeparator1 = new javax.swing.JLabel();
                 minuteSpinner = new javax.swing.JSpinner();
                 confirmButton = new javax.swing.JButton();
                 backButton = new javax.swing.JButton();
                 meridiemChooser = new javax.swing.JComboBox<>();
                 monthChooser = new javax.swing.JComboBox<>();
+                jPanel1 = new javax.swing.JPanel();
+                jLabel1 = new javax.swing.JLabel();
+                jPanel2 = new javax.swing.JPanel();
+                jLabel2 = new javax.swing.JLabel();
+                jLabel3 = new javax.swing.JLabel();
+                userLabel = new javax.swing.JLabel();
+                logoutButton = new javax.swing.JButton();
+                jPanel4 = new javax.swing.JPanel();
 
                 setMaximumSize(new java.awt.Dimension(720, 576));
                 setMinimumSize(new java.awt.Dimension(720, 576));
@@ -69,91 +76,28 @@ public class EditAppointment extends javax.swing.JPanel {
                                 formComponentShown(evt);
                         }
                 });
-                setLayout(new java.awt.GridBagLayout());
 
-                clientLabel.setText("Client");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
-                add(clientLabel, gridBagConstraints);
+                clientLabel1.setText("Client");
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 0;
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 20);
-                add(clientChooser, gridBagConstraints);
+                clientChooser.setForeground(new java.awt.Color(0, 0, 0));
 
-                propertyLabel.setText("Property");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 20);
-                add(propertyLabel, gridBagConstraints);
+                propertyLabel1.setText("Property");
 
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 1;
-                gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 20);
-                add(propertyChooser, gridBagConstraints);
-
-                scheduleLabel.setText("Schedule");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
-                add(scheduleLabel, gridBagConstraints);
+                scheduleLabel1.setText("Schedule");
 
                 dateSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 2;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-                add(dateSpinner, gridBagConstraints);
 
                 yearSpinner.setModel(new javax.swing.SpinnerNumberModel(24, 24, 25, 1));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 5;
-                gridBagConstraints.gridy = 2;
-                add(yearSpinner, gridBagConstraints);
 
-                dateComma.setText(",");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 3;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(10, 3, 0, 10);
-                add(dateComma, gridBagConstraints);
+                dateComma1.setText(",");
 
-                yearPrefix.setText("20");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 4;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 3);
-                add(yearPrefix, gridBagConstraints);
+                yearPrefix1.setText("20");
 
                 hourSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 6;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-                add(hourSpinner, gridBagConstraints);
 
-                timeSeparator.setText(":");
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 7;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
-                add(timeSeparator, gridBagConstraints);
+                timeSeparator1.setText(":");
 
                 minuteSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 8;
-                gridBagConstraints.gridy = 2;
-                add(minuteSpinner, gridBagConstraints);
 
                 confirmButton.setText("Confirm");
                 confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -161,13 +105,6 @@ public class EditAppointment extends javax.swing.JPanel {
                                 confirmButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 9;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-                add(confirmButton, gridBagConstraints);
 
                 backButton.setText("Cancel");
                 backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,28 +112,209 @@ public class EditAppointment extends javax.swing.JPanel {
                                 backButtonActionPerformed(evt);
                         }
                 });
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 0;
-                gridBagConstraints.gridy = 3;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
-                add(backButton, gridBagConstraints);
 
                 meridiemChooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 9;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-                add(meridiemChooser, gridBagConstraints);
 
                 monthChooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-                gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
-                gridBagConstraints.gridy = 2;
-                gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 10);
-                add(monthChooser, gridBagConstraints);
+
+                jPanel1.setBackground(new java.awt.Color(241, 218, 125));
+
+                jLabel1.setFont(new java.awt.Font("SimSun-ExtB", 1, 56)); // NOI18N
+                jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+                jLabel1.setText("APPOINTMENT");
+
+                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+                jPanel1.setLayout(jPanel1Layout);
+                jPanel1Layout.setHorizontalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel1)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                jPanel1Layout.setVerticalGroup(
+                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel1)
+                                .addContainerGap(36, Short.MAX_VALUE))
+                );
+
+                jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+                jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LOGO.png"))); // NOI18N
+
+                jLabel3.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+                jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+                jLabel3.setText("EASE-STATE");
+
+                userLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                userLabel.setForeground(new java.awt.Color(255, 255, 255));
+                userLabel.setText("USER INFO");
+
+                logoutButton.setBackground(new java.awt.Color(153, 153, 153));
+                logoutButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+                logoutButton.setForeground(new java.awt.Color(255, 255, 255));
+                logoutButton.setText("Log out");
+                logoutButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                logoutButtonActionPerformed(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+                jPanel2.setLayout(jPanel2Layout);
+                jPanel2Layout.setHorizontalGroup(
+                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(26, 26, 26)
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel3))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(logoutButton)
+                                                        .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(12, Short.MAX_VALUE))
+                );
+                jPanel2Layout.setVerticalGroup(
+                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jLabel3))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel2)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(logoutButton)
+                                .addGap(41, 41, 41))
+                );
+
+                jPanel4.setBackground(new java.awt.Color(241, 218, 125));
+
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+                this.setLayout(layout);
+                layout.setHorizontalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addContainerGap())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(23, 23, 23)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(clientLabel1)
+                                                        .addComponent(propertyLabel1)
+                                                        .addComponent(scheduleLabel1)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(clientChooser, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(propertyChooser, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addGroup(layout.createSequentialGroup()
+                                                                        .addComponent(backButton)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                                        .addComponent(monthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(dateSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(dateComma1)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(yearPrefix1)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                        .addComponent(hourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(timeSeparator1)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(minuteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                        .addComponent(meridiemChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                );
+                layout.setVerticalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(57, 57, 57)
+                                                .addComponent(clientLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(clientChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(propertyLabel1)
+                                                .addGap(4, 4, 4)
+                                                .addComponent(propertyChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(scheduleLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(monthChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(dateSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(dateComma1)
+                                                        .addComponent(yearSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(yearPrefix1)
+                                                        .addComponent(hourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(timeSeparator1)
+                                                        .addComponent(minuteSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(meridiemChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(backButton)
+                                                        .addComponent(confirmButton))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
+                );
         }// </editor-fold>//GEN-END:initComponents
+
+        private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+		clients = AMS.getClients();
+
+		for (int i = 0; i < clients.length; i++){
+			clientChooser.addItem(clients[i].name);
+
+			if (clients[i].id == ID) {
+				clientChooser.setSelectedIndex(i);
+			}
+		}
+
+		properties = AMS.getProperties();
+
+		for (int i = 0; i < properties.length; i++){
+			propertyChooser.addItem(properties[i].address);
+
+			if (properties[i].id == ID) {
+				propertyChooser.setSelectedIndex(i);
+			}
+		}
+
+		yearSpinner.setValue(appointment.year);
+		monthChooser.setSelectedIndex(appointment.month);
+		dateSpinner.setValue(appointment.date);
+		hourSpinner.setValue(appointment.hour);
+		minuteSpinner.setValue(appointment.minute);
+		meridiemChooser.setSelectedIndex(appointment.meridiem);
+        }//GEN-LAST:event_formComponentShown
 
         private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
 		Appointment updatedAppointment = new Appointment(ID);
@@ -239,52 +357,37 @@ public class EditAppointment extends javax.swing.JPanel {
 		meridiemChooser.setSelectedIndex(0);
         }//GEN-LAST:event_backButtonActionPerformed
 
-        private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-		clients = AMS.getClients();
-
-		for (int i = 0; i < clients.length; i++){
-			clientChooser.addItem(clients[i].name);
-
-			if (clients[i].id == ID) {
-				clientChooser.setSelectedIndex(i);
-			}
-		}
-
-		properties = AMS.getProperties();
-
-		for (int i = 0; i < properties.length; i++){
-			propertyChooser.addItem(properties[i].address);
-
-			if (properties[i].id == ID) {
-				propertyChooser.setSelectedIndex(i);
-			}
-		}
-
-		yearSpinner.setValue(appointment.year);
-		monthChooser.setSelectedIndex(appointment.month);
-		dateSpinner.setValue(appointment.date);
-		hourSpinner.setValue(appointment.hour);
-		minuteSpinner.setValue(appointment.minute);
-		meridiemChooser.setSelectedIndex(appointment.meridiem);
-        }//GEN-LAST:event_formComponentShown
+        private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+                Main.sessionAgent = null;
+                Main.sessionAgentID = 0;
+                layout.show(contentPane, "Log in");
+        }//GEN-LAST:event_logoutButtonActionPerformed
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton backButton;
         private javax.swing.JComboBox<String> clientChooser;
-        private javax.swing.JLabel clientLabel;
+        private javax.swing.JLabel clientLabel1;
         private javax.swing.JButton confirmButton;
-        private javax.swing.JLabel dateComma;
+        private javax.swing.JLabel dateComma1;
         private javax.swing.JSpinner dateSpinner;
         private javax.swing.JSpinner hourSpinner;
+        private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel2;
+        private javax.swing.JLabel jLabel3;
+        private javax.swing.JPanel jPanel1;
+        private javax.swing.JPanel jPanel2;
+        private javax.swing.JPanel jPanel4;
+        private javax.swing.JButton logoutButton;
         private javax.swing.JComboBox<String> meridiemChooser;
         private javax.swing.JSpinner minuteSpinner;
         private javax.swing.JComboBox<String> monthChooser;
         private javax.swing.JComboBox<String> propertyChooser;
-        private javax.swing.JLabel propertyLabel;
-        private javax.swing.JLabel scheduleLabel;
-        private javax.swing.JLabel timeSeparator;
-        private javax.swing.JLabel yearPrefix;
+        private javax.swing.JLabel propertyLabel1;
+        private javax.swing.JLabel scheduleLabel1;
+        private javax.swing.JLabel timeSeparator1;
+        private javax.swing.JLabel userLabel;
+        private javax.swing.JLabel yearPrefix1;
         private javax.swing.JSpinner yearSpinner;
         // End of variables declaration//GEN-END:variables
 }
