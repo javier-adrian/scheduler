@@ -22,6 +22,9 @@ public class Main extends javax.swing.JFrame {
 	AddClient addClientPane;
 	AddProperty addPropertyPane;
 	AddAppointment addAppointmentPane;
+	EditClient editClientPane;
+	EditProperty editPropertyPane;
+	EditAppointment editAppointmentPane;
 	JPanel contentPane;
 
 	AMS AMS;
@@ -39,10 +42,13 @@ public class Main extends javax.swing.JFrame {
 
 		loginPane = new Login(contentPane, AMS);
 		registerPane = new Register(contentPane, AMS);
-		appointmentsPane = new Appointments(contentPane, AMS);
 		addClientPane = new AddClient(contentPane, AMS);
 		addPropertyPane = new AddProperty(contentPane, AMS);
 		addAppointmentPane = new AddAppointment(contentPane, AMS);
+		editClientPane = new EditClient(contentPane, AMS);
+		editPropertyPane = new EditProperty(contentPane, AMS);
+		editAppointmentPane = new EditAppointment(contentPane, AMS);
+		appointmentsPane = new Appointments(contentPane, AMS, editAppointmentPane, editPropertyPane, editClientPane);
 
 		contentPane.add("Log in", loginPane);
 		contentPane.add("Register", registerPane);
@@ -50,6 +56,9 @@ public class Main extends javax.swing.JFrame {
 		contentPane.add("Add Client", addClientPane);
 		contentPane.add("Add Property", addPropertyPane);
 		contentPane.add("Add Appointment", addAppointmentPane);
+		contentPane.add("Edit Client", editClientPane);
+		contentPane.add("Edit Appointment", editAppointmentPane);
+		contentPane.add("Edit Property", editPropertyPane);
 
 		layout = (CardLayout) contentPane.getLayout();
 

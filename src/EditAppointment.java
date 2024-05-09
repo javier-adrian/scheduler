@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -10,22 +9,29 @@ import java.awt.*;
  *
  * @author creui
  */
-public class AddAppointment extends javax.swing.JPanel {
-	AMS AMS;
+public class EditAppointment extends javax.swing.JPanel {
 	JPanel contentPane;
+	AMS AMS;
 	CardLayout layout;
+	int ID;
+	Appointment appointment;
 	Client[] clients;
 	Property[] properties;
 
 	/**
-	 * Creates new form AddAppointment
+	 * Creates new form EditAppointment
 	 */
-	public AddAppointment(JPanel contentPane, AMS scheduler) {
-		this.AMS = scheduler;
+	public EditAppointment(JPanel contentPane, AMS AMS) {
+		this.AMS = AMS;
 		this.contentPane = contentPane;
 		layout = (CardLayout) contentPane.getLayout();
-
+	
 		initComponents();
+	}
+
+	public void edit(int ID) {
+		this.ID = ID;
+		appointment = AMS.getAppointment(ID);
 	}
 
 	/**
@@ -50,17 +56,15 @@ public class AddAppointment extends javax.swing.JPanel {
                 hourSpinner = new javax.swing.JSpinner();
                 timeSeparator = new javax.swing.JLabel();
                 minuteSpinner = new javax.swing.JSpinner();
-                addButton = new javax.swing.JButton();
+                confirmButton = new javax.swing.JButton();
                 backButton = new javax.swing.JButton();
                 meridiemChooser = new javax.swing.JComboBox<>();
                 monthChooser = new javax.swing.JComboBox<>();
 
                 setMaximumSize(new java.awt.Dimension(720, 576));
                 setMinimumSize(new java.awt.Dimension(720, 576));
+                setPreferredSize(new java.awt.Dimension(720, 576));
                 addComponentListener(new java.awt.event.ComponentAdapter() {
-                        public void componentHidden(java.awt.event.ComponentEvent evt) {
-                                formComponentHidden(evt);
-                        }
                         public void componentShown(java.awt.event.ComponentEvent evt) {
                                 formComponentShown(evt);
                         }
@@ -151,10 +155,10 @@ public class AddAppointment extends javax.swing.JPanel {
                 gridBagConstraints.gridy = 2;
                 add(minuteSpinner, gridBagConstraints);
 
-                addButton.setText("Add");
-                addButton.addActionListener(new java.awt.event.ActionListener() {
+                confirmButton.setText("Confirm");
+                confirmButton.addActionListener(new java.awt.event.ActionListener() {
                         public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                addButtonActionPerformed(evt);
+                                confirmButtonActionPerformed(evt);
                         }
                 });
                 gridBagConstraints = new java.awt.GridBagConstraints();
@@ -163,7 +167,7 @@ public class AddAppointment extends javax.swing.JPanel {
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-                add(addButton, gridBagConstraints);
+                add(confirmButton, gridBagConstraints);
 
                 backButton.setText("Cancel");
                 backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -194,8 +198,45 @@ public class AddAppointment extends javax.swing.JPanel {
                 add(monthChooser, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
-        private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+		Appointment updatedAppointment = new Appointment(ID);
+
+		updatedAppointment.client = clients[clientChooser.getSelectedIndex()].id;
+		updatedAppointment.property = properties[propertyChooser.getSelectedIndex()].id;
+		updatedAppointment.year = (int) yearSpinner.getValue();
+		updatedAppointment.month = monthChooser.getSelectedIndex();
+		updatedAppointment.date = (int) dateSpinner.getValue();
+		updatedAppointment.hour = (int) hourSpinner.getValue();
+		updatedAppointment.minute = (int) minuteSpinner.getValue();
+		updatedAppointment.meridiem = meridiemChooser.getSelectedIndex();
+
+		AMS.updateAppointment(ID, updatedAppointment);
+
 		layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		clientChooser.removeAllItems();
+		propertyChooser.removeAllItems();
+		monthChooser.setSelectedIndex(0);
+		dateSpinner.setValue(1);
+		yearSpinner.setValue(24);
+		hourSpinner.setValue(1);
+		minuteSpinner.setValue(0);
+		meridiemChooser.setSelectedIndex(0);
+        }//GEN-LAST:event_confirmButtonActionPerformed
+
+        private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+                layout.show(contentPane, "Appointments");
+
+		ID = 0;
+		clientChooser.removeAllItems();
+		propertyChooser.removeAllItems();
+		monthChooser.setSelectedIndex(0);
+		dateSpinner.setValue(1);
+		yearSpinner.setValue(24);
+		hourSpinner.setValue(1);
+		minuteSpinner.setValue(0);
+		meridiemChooser.setSelectedIndex(0);
         }//GEN-LAST:event_backButtonActionPerformed
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -203,58 +244,36 @@ public class AddAppointment extends javax.swing.JPanel {
 
 		for (int i = 0; i < clients.length; i++){
 			clientChooser.addItem(clients[i].name);
+
+			if (clients[i].id == ID) {
+				clientChooser.setSelectedIndex(i);
+			}
 		}
 
 		properties = AMS.getProperties();
 
 		for (int i = 0; i < properties.length; i++){
 			propertyChooser.addItem(properties[i].address);
+
+			if (properties[i].id == ID) {
+				propertyChooser.setSelectedIndex(i);
+			}
 		}
+
+		yearSpinner.setValue(appointment.year);
+		monthChooser.setSelectedIndex(appointment.month);
+		dateSpinner.setValue(appointment.date);
+		hourSpinner.setValue(appointment.hour);
+		minuteSpinner.setValue(appointment.minute);
+		meridiemChooser.setSelectedIndex(appointment.meridiem);
         }//GEN-LAST:event_formComponentShown
-
-        private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
-		clientChooser.removeAllItems();
-		propertyChooser.removeAllItems();
-		monthChooser.setSelectedIndex(0);
-		dateSpinner.setValue(1);
-		yearSpinner.setValue(24);
-		hourSpinner.setValue(1);
-		minuteSpinner.setValue(0);
-		meridiemChooser.setSelectedIndex(0);
-        }//GEN-LAST:event_formComponentHidden
-
-        private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-		int hour = (int) hourSpinner.getValue() - 1;
-
-		if (meridiemChooser.getSelectedItem() == "PM") 
-			hour += 12;
-
-		AMS.insertAppointment(
-			clients[clientChooser.getSelectedIndex()].id, 
-			properties[propertyChooser.getSelectedIndex()].id, 
-			(int) yearSpinner.getValue() + 100, 
-			monthChooser.getSelectedIndex(), 
-			(int) dateSpinner.getValue(), 
-			hour, 
-			(int) minuteSpinner.getValue()
-		);
-
-		clientChooser.removeAllItems();
-		propertyChooser.removeAllItems();
-		monthChooser.setSelectedIndex(0);
-		dateSpinner.setValue(1);
-		yearSpinner.setValue(24);
-		hourSpinner.setValue(1);
-		minuteSpinner.setValue(0);
-		meridiemChooser.setSelectedIndex(0);
-        }//GEN-LAST:event_addButtonActionPerformed
 
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JButton addButton;
         private javax.swing.JButton backButton;
         private javax.swing.JComboBox<String> clientChooser;
         private javax.swing.JLabel clientLabel;
+        private javax.swing.JButton confirmButton;
         private javax.swing.JLabel dateComma;
         private javax.swing.JSpinner dateSpinner;
         private javax.swing.JSpinner hourSpinner;

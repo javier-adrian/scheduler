@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,20 +17,39 @@ public class Appointments extends javax.swing.JPanel {
 	DefaultTableModel appointmentsModel;
 	DefaultTableModel propertiesModel;
 	DefaultTableModel clientsModel;
+	DefaultTableModel appointmentIDsModel;
+	DefaultTableModel propertyIDsModel;
+	DefaultTableModel clientIDsModel;
 	CardLayout layout;
+	DefaultTableModel viewing;
+	EditAppointment appointmentEditor;
+	EditProperty propertyEditor;
+	EditClient clientEditor;
+
+	int row;
+	int column;
 
 	/**
 	 * Creates new form Appointments
 	 */
-	public Appointments(JPanel contentPane, AMS scheduler) {
+	public Appointments(JPanel contentPane, AMS AMS, EditAppointment appointmentEditor, EditProperty propertyEditor, EditClient clientEditor) {
 		this.contentPane = contentPane;
-		this.AMS = scheduler;
+		this.AMS = AMS;
+		this.appointmentEditor = appointmentEditor;
+		this.propertyEditor = propertyEditor;
+		this.clientEditor = clientEditor;
 
 		appointmentsModel = new DefaultTableModel();
 
 		appointmentsModel.addColumn("Schedule");
 		appointmentsModel.addColumn("Property");
 		appointmentsModel.addColumn("Client");
+		
+		appointmentIDsModel = new DefaultTableModel();
+
+		appointmentIDsModel.addColumn("Schedule ID");
+		appointmentIDsModel.addColumn("Property ID");
+		appointmentIDsModel.addColumn("Client ID");
 
 		propertiesModel = new DefaultTableModel();
 
@@ -39,11 +57,23 @@ public class Appointments extends javax.swing.JPanel {
 		propertiesModel.addColumn("Schedule");
 		propertiesModel.addColumn("Client");
 
+		propertyIDsModel = new DefaultTableModel();
+
+		propertyIDsModel.addColumn("Property ID");
+		propertyIDsModel.addColumn("Schedule ID");
+		propertyIDsModel.addColumn("Client ID");
+
 		clientsModel = new DefaultTableModel();
 
 		clientsModel.addColumn("Client");
 		clientsModel.addColumn("Property");
 		clientsModel.addColumn("Schedule");
+
+		clientIDsModel = new DefaultTableModel();
+
+		clientIDsModel.addColumn("Client ID");
+		clientIDsModel.addColumn("Property ID");
+		clientIDsModel.addColumn("Schedule ID");
 
 		layout = (CardLayout) contentPane.getLayout();
 
@@ -57,8 +87,10 @@ public class Appointments extends javax.swing.JPanel {
 
 	private void updateViewerAppointments() {
 		appointmentsModel.setRowCount(0);
+		appointmentIDsModel.setRowCount(0);
 
 		appointmentsModel = AMS.getAppointments(appointmentsModel);
+		appointmentIDsModel = AMS.getAppointmentIDs(appointmentIDsModel);
 
 		viewer.setModel(appointmentsModel);
 		viewer.doLayout();
@@ -66,8 +98,10 @@ public class Appointments extends javax.swing.JPanel {
 
 	private void updateViewerProperties() {
 		propertiesModel.setRowCount(0);
+		propertyIDsModel.setRowCount(0);
 
 		propertiesModel = AMS.getProperties(propertiesModel);
+		propertyIDsModel = AMS.getPropertyIDs(propertyIDsModel);
 
 		viewer.setModel(propertiesModel);
 		viewer.doLayout();
@@ -75,8 +109,10 @@ public class Appointments extends javax.swing.JPanel {
 
 	private void updateViewerClients() {
 		clientsModel.setRowCount(0);
+		clientIDsModel.setRowCount(0);
 
 		clientsModel = AMS.getClients(clientsModel);
+		clientIDsModel = AMS.getClientsIDs(clientIDsModel);
 
 		viewer.setModel(clientsModel);
 		viewer.doLayout();
@@ -106,8 +142,8 @@ public class Appointments extends javax.swing.JPanel {
                 logoutButton = new javax.swing.JButton();
                 listByLabel = new javax.swing.JLabel();
                 listBy = new javax.swing.JComboBox<>();
-                jButton1 = new javax.swing.JButton();
-                jButton2 = new javax.swing.JButton();
+                editButton = new javax.swing.JButton();
+                removeButton = new javax.swing.JButton();
 
                 setMinimumSize(new java.awt.Dimension(720, 576));
                 setPreferredSize(new java.awt.Dimension(720, 576));
@@ -261,43 +297,70 @@ public class Appointments extends javax.swing.JPanel {
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
                 add(listBy, gridBagConstraints);
 
-                jButton1.setText("Edit");
+                editButton.setText("Edit");
+                editButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                editButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 2;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
-                add(jButton1, gridBagConstraints);
+                add(editButton, gridBagConstraints);
 
-                jButton2.setText("Remove");
+                removeButton.setText("Remove");
+                removeButton.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                removeButtonActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 3;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.insets = new java.awt.Insets(0, 20, 40, 0);
-                add(jButton2, gridBagConstraints);
+                add(removeButton, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
         private void listByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listByActionPerformed
 		switch (listBy.getSelectedItem().toString()) {
 			case "Appointments":
 				updateViewerAppointments();
+				viewing = appointmentIDsModel;
 				break;
 			case "Properties":
 				updateViewerProperties();
+				viewing = propertyIDsModel;
 				break;
 			case "Clients":
 				updateViewerClients();
+				viewing = clientIDsModel;
 				break;
 			default:
 				throw new AssertionError();
 		}
-		System.out.println(listBy.getSelectedItem());
         }//GEN-LAST:event_listByActionPerformed
 
         private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 		userLabel.setText(AMS.getAgentName(Main.sessionAgent));
-		updateViewerAppointments();
+		switch (listBy.getSelectedItem().toString()) {
+			case "Appointments":
+				updateViewerAppointments();
+				viewing = appointmentIDsModel;
+				break;
+			case "Properties":
+				updateViewerProperties();
+				viewing = propertyIDsModel;
+				break;
+			case "Clients":
+				updateViewerClients();
+				viewing = clientIDsModel;
+				break;
+			default:
+				throw new AssertionError();
+		}
         }//GEN-LAST:event_formComponentShown
 
         private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -318,19 +381,81 @@ public class Appointments extends javax.swing.JPanel {
 		layout.show(contentPane, "Add Appointment");
         }//GEN-LAST:event_addAppointmentButtonActionPerformed
 
+        private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+		int row = viewer.getSelectedRow();
+		int column = viewer.getSelectedColumn();
+
+		switch (listBy.getSelectedItem().toString()) {
+			case "Appointments":
+				appointmentEditor.edit(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
+				layout.show(contentPane, "Edit Appointment");
+				break;
+			case "Properties":
+				if (column == 0){
+					propertyEditor.edit(Integer.parseInt(viewing.getValueAt(row, column).toString()));
+					layout.show(contentPane, "Edit Property");
+				}
+				else{
+					appointmentEditor.edit(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
+					layout.show(contentPane, "Edit Appointment");
+				}
+				break;
+			case "Clients":
+				if (column == 0){
+					clientEditor.edit(Integer.parseInt(viewing.getValueAt(row, column).toString()));
+					layout.show(contentPane, "Edit Client");
+				}
+				else{
+					layout.show(contentPane, "Edit Appointment");
+					appointmentEditor.edit(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
+				}
+				break;
+			default:
+				throw new AssertionError();
+		}
+        }//GEN-LAST:event_editButtonActionPerformed
+
+        private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+		int row = viewer.getSelectedRow();
+		int column = viewer.getSelectedColumn();
+
+		switch (listBy.getSelectedItem().toString()) {
+			case "Appointments":
+				AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
+				updateViewerAppointments();
+				break;
+			case "Properties":
+				if (viewer.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString().equals(" "))
+					AMS.removeProperty(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
+				else
+					AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
+				updateViewerProperties();
+				break;
+			case "Clients":
+				if (viewer.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString().equals(" "))
+					AMS.removeClient(Integer.parseInt(viewing.getValueAt(row, 0).toString()));
+				else
+					AMS.removeAppointment(Integer.parseInt(viewing.getValueAt(row, viewer.getColumn("Schedule").getModelIndex()).toString()));
+				updateViewerClients();
+				break;
+			default:
+				throw new AssertionError();
+		}
+        }//GEN-LAST:event_removeButtonActionPerformed
+
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton addAppointmentButton;
         private javax.swing.JButton addCustomerButton;
         private javax.swing.JLabel addLabel;
         private javax.swing.JButton addPropertyButton;
+        private javax.swing.JButton editButton;
         private javax.swing.JComboBox<String> filterBy;
         private javax.swing.JLabel filterByLabel;
-        private javax.swing.JButton jButton1;
-        private javax.swing.JButton jButton2;
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JComboBox<String> listBy;
         private javax.swing.JLabel listByLabel;
         private javax.swing.JButton logoutButton;
+        private javax.swing.JButton removeButton;
         private javax.swing.JComboBox<String> sortBy;
         private javax.swing.JLabel sortByLabel;
         private javax.swing.JLabel userLabel;

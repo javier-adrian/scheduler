@@ -174,6 +174,60 @@ public class AMS {
 	    }
     }
 
+    public void removeAppointment(int ID) {
+	    String query = "DELETE FROM appointment WHERE id = ?";
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+    }
+
+    public void removeProperty(int ID) {
+	    String query = "DELETE FROM property WHERE id = ?";
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+    }
+
+    public void removeClient(int ID) {
+	    String query = "DELETE FROM client WHERE id = ?";
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+    }
+
     public String getAgentName(String username){
 	    String query = "SELECT * FROM agent WHERE username = ?";
 	    String name = "Error";
@@ -424,7 +478,7 @@ public class AMS {
 		    "FROM client " +
 		    "LEFT JOIN appointment ON client.id = appointment.client " +
 		    "LEFT JOIN property ON appointment.property = property.id " +
-		    "WHERE property.agent = ?";
+		    "WHERE client.agent = ?";
 
 	    DefaultTableModel newModel = model;
 
@@ -468,5 +522,300 @@ public class AMS {
 	    }
 
 	    return newModel;
+    }
+
+    public DefaultTableModel getClientsIDs(DefaultTableModel model){
+	    String query = 
+		    "SELECT client.id, " + 
+		    "property.id, " + 
+		    "appointment.id " + 
+		    "FROM client " +
+		    "LEFT JOIN appointment ON client.id = appointment.client " +
+		    "LEFT JOIN property ON appointment.property = property.id " +
+		    "WHERE client.agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, Main.sessionAgentID);
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    String client = result.getString("client.id");
+			    String property = result.getString("property.id");
+			    String appointment = result.getString("appointment.id");
+
+			    String row = 
+				    client + ",," +
+				    property + ",," +
+				    appointment;
+
+			    String[] tuple = row.split(",,");
+			    newModel.addRow(tuple);
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return newModel;
+    }
+
+    public DefaultTableModel getPropertyIDs(DefaultTableModel model){
+	    String query = 
+		    "SELECT property.id, " + 
+		    "appointment.id, " + 
+		    "client.id " + 
+		    "FROM property " +
+		    "LEFT JOIN appointment ON property.id = appointment.property " +
+		    "LEFT JOIN client ON appointment.client = client.id " +
+		    "WHERE property.agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, Main.sessionAgentID);
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    int client = result.getInt("client.id");
+			    int property = result.getInt("property.id");
+			    int appointment = result.getInt("appointment.id");
+
+			    String row = 
+				    property + ",," +
+				    appointment + ",," +
+				    client;
+			    String[] tuple = row.split(",,");
+			    newModel.addRow(tuple);
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return newModel;
+    }
+
+    public DefaultTableModel getAppointmentIDs(DefaultTableModel model){
+	    String query = 
+		    "SELECT appointment.id, " + 
+		    "property.id, " + 
+		    "client.id " + 
+		    "FROM property " +
+		    "LEFT JOIN appointment ON property.id = appointment.property " +
+		    "LEFT JOIN client ON appointment.client = client.id " +
+		    "WHERE appointment.agent = ?";
+
+	    DefaultTableModel newModel = model;
+
+	    try {
+		    connection = DriverManager.getConnection(url, user, password);
+
+		    PreparedStatement statement = connection.prepareStatement(query);
+		    statement.setInt(1, Main.sessionAgentID);
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    int client = result.getInt("client.id");
+			    int property = result.getInt("property.id");
+			    int appointment = result.getInt("appointment.id");
+
+			    String row = 
+				    appointment + ",," +
+				    property + ",," +
+				    client;
+			    String[] tuple = row.split(",,");
+			    newModel.addRow(tuple);
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return newModel;
+    }
+
+    public Property getProperty(int ID) {
+	    String query = "SELECT * FROM property where id = ?";
+	    Property property = new Property(ID, "");
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    property.region = result.getString("region");
+			    property.province = result.getString("province");
+			    property.city = result.getString("city");
+			    property.barangay = result.getString("barangay");
+			    property.village = result.getString("village");
+			    property.street = result.getString("street");
+			    property.hNumber = result.getString("hNumber");
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return property;
+    }
+
+    public Appointment getAppointment(int ID) {
+	    String query = "SELECT * FROM appointment where id = ?";
+	    Appointment appointment = new Appointment(ID);
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    Timestamp schedule = result.getTimestamp("schedule");
+			    appointment.year = schedule.getYear() - 100;
+			    appointment.month = schedule.getMonth();
+			    appointment.date = schedule.getDate();
+			    if (schedule.getHours() > 11) {
+				    appointment.hour = schedule.getHours() - 12;
+				    appointment.meridiem = 1;
+			    } else {
+				    appointment.hour = schedule.getHours();
+				    appointment.meridiem = 0;
+			    }
+			    appointment.minute = schedule.getMinutes();
+			    appointment.client = result.getInt("client");
+			    appointment.property = result.getInt("property");
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return appointment;
+    }
+
+    public Client getClient(int ID) {
+	    String query = "SELECT * FROM client where id = ?";
+	    Client client = new Client(ID);
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, ID);
+
+		    ResultSet result = statement.executeQuery();
+
+		    statement.close();
+		    connection.close();
+
+		    while (result.next()) {
+			    client.fName = result.getString("fName");
+			    client.lName = result.getString("lName");
+			    client.email = result.getString("email");
+			    client.contactNo = result.getInt("contactNo");
+		    }
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+
+	    return client;
+    }
+
+    public void updateAppointment(int ID, Appointment appointment) {
+	    String query = "UPDATE appointment set client = ?, property = ?, schedule = ? WHERE id = ?";
+	    int hour = 0;
+
+	    if (appointment.meridiem == 1) {
+		    hour = appointment.hour + 12;
+	    } else
+		    hour = appointment.hour;
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setInt(1, appointment.client);
+		    statement.setInt(2, appointment.property);
+		    statement.setTimestamp(3, new Timestamp(appointment.year + 100, appointment.month, appointment.date, hour, appointment.minute, 0, 0));
+		    statement.setInt(4, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+    }
+
+    public void updateProperty(int ID, Property property){
+	    String query = "UPDATE property set region = ?, province = ?, city = ?, barangay = ?, village = ?, street = ?, hNumber = ? WHERE id = ?";
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setString(1, property.region);
+		    statement.setString(2, property.province);
+		    statement.setString(3, property.city);
+		    statement.setString(4, property.barangay);
+		    statement.setString(5, property.village);
+		    statement.setString(6, property.street);
+		    statement.setString(7, property.hNumber);
+		    statement.setInt(8, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
+    }
+
+    public void updateClient(int ID, Client client) {
+	    String query = "UPDATE client set fName = ?, lName = ?, email = ?, contactNo = ? WHERE id = ?";
+
+	    try {
+		    connection = DriverManager.getConnection(url);
+		    PreparedStatement statement = connection.prepareStatement(query);
+
+		    statement.setString(1, client.fName);
+		    statement.setString(2, client.lName);
+		    statement.setString(3, client.email);
+		    statement.setInt(4, client.contactNo);
+		    statement.setInt(5, ID);
+
+		    statement.executeUpdate();
+
+		    statement.close();
+		    connection.close();
+	    } catch (SQLException e) {
+		    e.printStackTrace();
+	    }
     }
 }

@@ -10,6 +10,13 @@
 public class Property {
 	public int id;
 	public String address;
+	public String region;
+	public String province;
+	public String city;
+	public String barangay;
+	public String village;
+	public String street;
+	public String hNumber;
 
 	public Property(int id, String address) {
 		this.id = id;
